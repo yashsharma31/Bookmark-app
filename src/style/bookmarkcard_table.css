@@ -1,0 +1,42 @@
+.bt-outside-container{
+    display: grid;
+    grid-template-columns: 5% 20% 35% 20% 20%;
+    height: 140px;
+    margin-bottom: 20px;
+    width: 100%;
+    border: solid;
+    border-color: #E4E2E7;
+    border-radius: 20px;
+    border-width: 1px;
+}
+.bt-image2-container{
+    margin: auto;
+    width: 20px;
+}
+.bt-image-container{
+    margin: auto;
+}
+.bt-image-container img{
+    width:150px;
+   
+}
+.bt-middle-text-card{
+    text-align: left;
+    margin: auto;
+}
+.bt-bookmark-card-bottom-text{
+    text-align: left;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 19px;
+    align-items: center;
+    color: #9D9B9F;
+}
+.bt-folder-location{
+    margin: auto;
+}
+.bt-icon-buttons{
+    margin: auto;
+}

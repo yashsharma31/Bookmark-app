@@ -1,0 +1,80 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+.container{
+    display: flex;
+
+}
+
+.left_side{
+    display: block;
+    width: 400px;
+    height: 600px;
+    background-color: #5352ED;
+}
+.left_heading{
+    color: white;
+    display: flex;
+    position: absolute;
+    flex-direction: column;
+    text-align: left;
+    padding: 25px;
+    padding-left: 80px;
+    margin: 0px;
+    justify-content: space-between;  
+    margin-top: 20px;
+}
+.left_heading h1{
+    font-weight: 400;
+    margin: 0px;
+    font-size: 50px;
+}
+.left_heading h2{
+    font-weight: 700;
+    margin: 0px;
+    font-size: 50px;
+}
+
+.right_side{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 600px;
+    width: 600px;
+}
+.right_fields{
+    width: 200px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.inputRounded .MuiOutlinedInput-root {
+    border-radius: 16px;
+  }
+
+.imgsly{
+    position: absolute;
+    width: 800px;
+    margin: 0px;
+    
+}
+.loginmobile{
+    display: none;
+}
+
+@media only screen and (max-width: 600px) {
+    .left_heading{
+        display: none;
+    }
+    .leftblueside{
+        display: none;
+    }
+    .loginmobile{
+        position:absolute;
+        width: 100%;
+        display: grid;
+        grid-template-columns: 10% 80% ;
+        padding: 20px;
+        flex-direction: row;
+        text-align: center;
+    }
+  }

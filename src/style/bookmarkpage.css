@@ -1,0 +1,151 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+.outer-container{
+    display: grid;
+    grid-template-columns: 20% 80%;
+    height: 100%;
+}
+.left-side-container{
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
+    font-weight: 700;
+    font-family: Inter,sans-serif;
+    box-shadow: 10px 0px 5px 0px rgba(0,0,0,0.15);
+}
+.left-side-container-inside{
+    display: flex;
+    flex-direction: row;
+    text-transform: uppercase;
+}
+.right-side-container{
+    display: flex;
+    flex-direction: column;
+    
+}
+.search_bar_left{
+    display: flex;
+    padding-top: 15px;
+    border: solid;
+    border-color: #F4F4F4;
+    padding-bottom: 15px;
+    margin-top: 40px;
+    background-color: white;
+    border-radius: 16px;
+    height: 30px;
+    width: 100%;
+}
+.search-bar-input-left{
+    background-color: white;
+    border: none;
+    outline: none;
+    font-family: 'Inter',sans-serif;
+    font-size: 16px;
+    width: 100%;
+}
+.search-bar-input-left::placeholder {
+    font-family: 'Inter',sans-serif;
+    font-size: 16px;
+}
+.search-bar-input-left:focus::placeholder {
+    color: transparent;
+    font-family: 'Inter',sans-serif;
+    font-size: 16px;
+}
+.quick-link-box{
+    color: white;
+    display: grid;
+    grid-template-columns: 60% 40%;
+    margin-top: 100px;
+    margin-left: 40px;
+    margin-right: 40px;
+    margin-bottom: 40px;
+    padding: 20px;
+    height: 250px;
+    border-radius: 20px;
+    background-color: #5352ED;
+}
+.left-quick-link-box{
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    text-align: left;
+    margin-right: 40px;
+    padding-left: 30px;
+    padding-top: 10px;
+
+}
+.url-box .inputRounded .MuiOutlinedInput-root {
+    background-color: #6C6BF9;
+}
+.url-box{
+    padding-top: 20px;
+}
+.folder-box{
+    padding-top: 20px;
+}
+.folder-buttons{
+    display: grid;
+    grid-template-columns: 80% 20%;
+    margin-right: 40px;
+}
+.right-quick-link-box-image{
+    display: flex;
+    justify-content: center;
+    margin-top: -50px;
+}
+.search-side-middle{
+    display: grid;
+    grid-template-columns: 40% 30% 20% 10%;
+    padding-left: 40px;
+}
+.search-side-middle .inputRounded .MuiOutlinedInput-root {
+    background-color: #F4F4F4;
+}
+.search_bar{
+    display: flex;
+    padding: 15px;
+    margin: 10px;
+    background-color: #F4F4F4;
+    border-radius: 16px;
+    height: 30px;
+}
+
+.search-bar-input{
+    background-color: #F4F4F4;
+    border: none;
+    outline: none;
+    font-family: 'Inter',sans-serif;
+    font-size: 16px;
+    width: 100%;
+}
+.search-bar-input::placeholder {
+    font-family: 'Inter',sans-serif;
+    font-size: 16px;
+}
+.search-bar-input:focus::placeholder {
+    color: transparent;
+    font-family: 'Inter',sans-serif;
+    font-size: 16px;
+}
+.bookmark-cards-bottom{
+    padding: 40px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 0%;
+}
+.chkbox{
+    position: absolute;
+    padding: 20px;
+}
+.bookmark-cards-bottom-tiled{
+    padding: 40px;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+@media only screen and (max-width: 600px) {
+    
+  }

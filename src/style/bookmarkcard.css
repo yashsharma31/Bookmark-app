@@ -1,0 +1,36 @@
+.outside-container{
+    display: block;
+    height: 400px;
+    width: 360px;
+    border: solid;
+    border-color: #E4E2E7;
+    border-radius: 20px;
+    border-width: 1px;
+}
+.image-container{
+    margin-top: 25px;
+}
+.middle-text-card{
+    display: grid;
+    grid-template-columns: 90% 10%;
+    text-align: left;
+    margin-right: 15px;
+    margin-left: 25px;
+}
+.bookmark-card-bottom-text{
+    text-align: left;
+    padding-right: 80px;
+    padding-left: 25px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 19px;
+    align-items: center;
+    color: #9D9B9F;
+}
+.heartcardleft{
+    position: absolute;
+    margin-left: 210px;
+    margin-top: 40px;
+}
