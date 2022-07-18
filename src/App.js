@@ -10,7 +10,7 @@ import Bookmark_card from './components/Bookmark_card';
 function App() {
   return (
     <div className="App">
-      <BookmarkPage/>
+      <Signupinside/>
     </div>
   );
 }
