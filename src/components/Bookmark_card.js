@@ -1,12 +1,6 @@
-import { Button, FormControlLabel, IconButton, InputAdornment, InputBase, TextField, ToggleButton, ToggleButtonGroup, Typography } from '@mui/material'
+import { IconButton,Typography } from '@mui/material'
 import React from 'react'
 import '../style/bookmarkcard.css'
-import quicklinkvr from '../assets/quicklink.png'
-import bookmarklogo from '../assets/bookmarklogo.png'
-import Switch from '@mui/material/Switch';
-import { styled } from '@mui/material/styles';
-import SearchIcon from '@mui/icons-material/Search';
-import AddIcon from '@mui/icons-material/Add';
 import cards from '../assets/bookmark_image.png'
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import chkboxcard from '../assets/checkbox_cards.png';

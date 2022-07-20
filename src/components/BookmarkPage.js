@@ -1,4 +1,4 @@
-import { Button, FormControlLabel, IconButton, InputAdornment, InputBase, TextField, ToggleButton, ToggleButtonGroup, Typography } from '@mui/material'
+import { Button, FormControlLabel, IconButton, TextField, Typography } from '@mui/material'
 import React from 'react'
 import '../style/bookmarkpage.css'
 import quicklinkvr from '../assets/quicklink.png'
@@ -60,6 +60,58 @@ const MaterialUISwitch = styled(Switch)(({ theme }) => ({
     },
   }));
 
+  const MyTypography = styled(Typography)({
+    fontSize: '20px',
+    fontFamily:'Inter',
+    fontWeight:'700'
+  });
+  const MyTypographyInner = styled(Typography)({
+    fontSize: '12px',
+    fontFamily:'Inter',
+    fontWeight:'400'
+  });
+  const MyTextfield = styled(TextField)({
+    marginTop:"20px",
+    borderRadius: '15px',
+    height:'50px',
+    color:"white"
+  });
+  const MyButton = styled(Button)({
+    borderRadius: '15px',
+    marginTop:"20px",
+    height:'50px',
+    width:'150px' ,
+    textTransform: 'none',
+    fontSize: '16px',
+    fontFamily:'Inter' ,
+    fontWeight:'700',
+    color:"#5352ED",
+    backgroundColor:"white"
+  });
+
+  const My2ndButton = styled(Button)({
+    marginTop:"20px",
+    borderRadius: '15px',
+    height:'50px',
+    width:'300px',
+    textTransform: 'none',
+    backgroundColor:"#6C6BF9",
+    fontSize: '16px',
+    fontFamily:'Inter' ,
+    fontWeight:'500',
+    borderColor: '#EEEEEE',
+    color:"white"
+  });
+  const MyAddButton = styled(Button)({
+    marginTop:"10px",
+    borderRadius: '15px',
+    height:'50px',
+    width:'150px',
+    fontFamily:'Inter' ,
+    fontWeight:'400',
+    color:"#5352ED",
+    backgroundColor:"white"
+  });
 
 
 function BookmarkPage() {
@@ -94,50 +146,31 @@ function BookmarkPage() {
         <div className='right-side-container'>
             <div className='quick-link-box'>
                 <div className='left-quick-link-box'>
-                    <Typography variant='h1'sx={{fontSize: '20px',
-                            fontFamily:'Inter',
-                            fontWeight:'700',}}>Add Quick Link</Typography>
+                    <MyTypography variant='h1'>Add Quick Link</MyTypography>
                     <div className='url-box'>
-                        <Typography variant='h6' sx={{fontSize: '12px',
-                            fontFamily:'Inter' ,
-                            fontWeight:'400',}}>URL</Typography>
-                        <TextField
+                        <MyTypographyInner variant='h6'>URL</MyTypographyInner>
+                        <MyTextfield
                             className='inputRounded'
                             label="URL"
                             fullWidth
                             id="url"
                             autoComplete="url"
-                            sx={{ mt: 1,borderRadius: '15px',height:'50px',color:"white" }}
                             />
                     </div>
                     <div className='folder-box'>
-                        <Typography variant='h6' sx={{fontSize: '12px',
-                            fontFamily:'Inter' ,
-                            fontWeight:'400',}}>FOLDER</Typography>
+                        <MyTypographyInner variant='h6'>FOLDER</MyTypographyInner>
                         <div className='folder-buttons'>
-                            <Button
+                            <My2ndButton
                                 type="submit"
                                 variant="Filled"
-                                size="large"
-                                sx={{ mt: 2, mb: 2 ,borderRadius: '15px',height:'50px',width:'300px' ,textTransform: 'none',backgroundColor:"#6C6BF9",
-                                fontSize: '16px',
-                                fontFamily:'Inter' ,
-                                fontWeight:'500',
-                                borderColor: '#EEEEEE',
-                                color:"white" }}>Root
-                            </Button>
-                            <Button
+                                size="large">Root
+                            </My2ndButton>
+                            <MyButton
                                 type="submit"
                                 variant="contained"
                                 size="large"
-                                sx={{ mt: 2, mb: 2 ,borderRadius: '15px',height:'50px',width:'150px' ,textTransform: 'none',
-                                fontSize: '16px',
-                                fontFamily:'Inter' ,
-                                fontWeight:'700',
-                                color:"#5352ED",
-                                backgroundColor:"white"
-                                }}>Save
-                            </Button>
+                                >Save
+                            </MyButton>
 
                         </div>
                     </div>
@@ -150,7 +183,7 @@ function BookmarkPage() {
             <div className='search-side-middle'>
                 <div className='search-bar-right'>
                     <div className='search_bar'>
-                        <IconButton sx={{ p: '10px' }} aria-label="menu">
+                        <IconButton  aria-label="menu">
                             <SearchIcon />
                         </IconButton>
                         <input
@@ -164,17 +197,11 @@ function BookmarkPage() {
                 <div>
 
                 </div>
-                <Button variant="outlined" startIcon={<AddIcon />}
-                sx={{ mt: 2, mb: 2 ,borderRadius: '15px',height:'50px',width:'150px',
-                fontFamily:'Inter' ,
-                fontWeight:'400',
-                color:"#5352ED",
-                backgroundColor:"white"
-                }}>
+                <MyAddButton variant="outlined" startIcon={<AddIcon />}>
                     Add link
-                </Button>
+                </MyAddButton>
                 <FormControlLabel
-                    control={<MaterialUISwitch sx={{ m: 1 }} checked={checked} onChange={switchHandler}/>}
+                    control={<MaterialUISwitch checked={checked} onChange={switchHandler}/>}
                 />
             
                 
