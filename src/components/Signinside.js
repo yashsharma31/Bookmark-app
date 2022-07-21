@@ -13,14 +13,36 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import "../style/login.css";
 import sly1 from '../assets/Saly-10.png'
 import GoogleIcon from '@mui/icons-material/Google';
+import { useState } from 'react';
+import gql from 'graphql-tag';
+import {useMutation} from '@apollo/react-hooks';
+
 
 const theme = createTheme();
 
-export default function SignInSide() {
+function SignInSide() {
+
+  const [values,setValues] = useState({
+    username:'',
+    email:'',
+    password:'',
+  })
+
+  const [addUser,{loading}]= useMutation(REGISTER_USER,{
+    update(proxy,result){
+      console.log(result)
+    },
+    variables:{
+      username: values
+    }
+  })
+
   const handleSubmit = (event) => {
     event.preventDefault();
+    addUser()
     const data = new FormData(event.currentTarget);
     console.log({
+      name:data.get('name'),
       email: data.get('email'),
       password: data.get('password'),
     });
@@ -59,6 +81,14 @@ export default function SignInSide() {
     borderColor: '#EEEEEE'
   })
 
+  const onChange = (event) => {
+    setValues({...values,[event.target.name]:event.target.value})
+  }
+
+
+  
+
+
   return (
     <ThemeProvider theme={theme}>
       <Grid container component="main" sx={{ height: '100vh' }}>
@@ -87,6 +117,8 @@ export default function SignInSide() {
                 name="name"
                 autoComplete="name"
                 autoFocus
+                value={values.username}
+                onChange={onChange}
               />
               <TextField
                 className='inputRounded'
@@ -97,6 +129,8 @@ export default function SignInSide() {
                 name="email"
                 autoComplete="email"
                 autoFocus
+                value={values.email}
+                onChange={onChange}
               />
               <TextField
                 className='inputRounded'
@@ -106,6 +140,8 @@ export default function SignInSide() {
                 label="Password"
                 type="password"
                 id="password"
+                value={values.password}
+                onChange={onChange}
                 autoComplete="current-password"
               />
               <FormControlLabel
@@ -140,3 +176,23 @@ export default function SignInSide() {
     </ThemeProvider>
   );
 }
+
+const REGISTER_USER = gql`
+  mutation register(
+    $username:String!
+    $email:String!
+    $password:String!
+  ){
+    register(
+      registerInput: {
+        username: $username
+        email: $email
+        password: $username
+      }
+    ){
+      id email username createdAt token
+    }
+  }`
+
+
+export default SignInSide;
