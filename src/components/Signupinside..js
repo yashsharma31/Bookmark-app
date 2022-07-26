@@ -9,6 +9,7 @@ import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import "../style/login.css";
+import { logInRequest } from '../services'
 import sly1 from '../assets/Saly-10.png'
 import {IconButton } from '@mui/material';
 import KeyboardArrowLeftRoundedIcon from '@mui/icons-material/KeyboardArrowLeftRounded';
@@ -46,6 +47,7 @@ const MyLoginbtn = styled(Button)({
 
 const theme = createTheme();
 
+
 export default function Signupinside() {
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -54,6 +56,11 @@ export default function Signupinside() {
       email: data.get('email'),
       password: data.get('password'),
     });
+    onSubmit(data.get('email'),data.get('password'))
+  };
+  const onSubmit = (email, password ) => {
+    console.log({ email, password });
+    return logInRequest({ email, password });
   };
 
   return (
@@ -76,7 +83,8 @@ export default function Signupinside() {
         />
         <Grid item xs={12} sm={8} md={8} component={Paper} square>
           <MyBox>
-            <InterBox component="form"  noValidate onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit}>
+            <InterBox component="form"  noValidate onSubmit={onSubmit}>
               <TextField
                 className='inputRounded'
                 margin="normal"
@@ -115,6 +123,7 @@ export default function Signupinside() {
                 </Link>
               </Typography>
             </InterBox>
+            </form>
           </MyBox>
         </Grid>
       </Grid>
