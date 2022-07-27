@@ -9,6 +9,7 @@ import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import "../style/login.css";
+
 import { logInRequest } from '../services'
 import sly1 from '../assets/Saly-10.png'
 import {IconButton } from '@mui/material';
@@ -60,7 +61,10 @@ export default function Signupinside() {
   };
   const onSubmit = (email, password ) => {
     console.log({ email, password });
+    console.log("this is the output",logInRequest({ email, password }));
     return logInRequest({ email, password });
+    
+    
   };
 
   return (

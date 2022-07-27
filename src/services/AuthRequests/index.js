@@ -1,15 +1,16 @@
 import { setHeaders } from "../Headers";
-import { addDataToLocalStorage, removeDataFromLocalStorage } from "../LocalStorage";
+import { addDataToLocalStorage, removeDataFromLocalStorage,getDataFromLocalStorage } from "../LocalStorage";
 const axios = require('axios');
-export const signInRequest = async (props) => {
+
+export const registerUserService = async (props) => {
     const data = JSON.stringify({
-        "name": props.Name,
-        "email": props.email,
-        "password": props.password
+        "name": props.user.name,
+        "email": props.user.email,
+        "password": props.user.password
     });
     const config = {
         method: 'POST',
-        url: `${process.env.REACT_APP_API_URL}/register`,
+        url: `${process.env.REACT_APP_URL}/register`,
         headers: {
             'Content-Type': 'application/json'
         },

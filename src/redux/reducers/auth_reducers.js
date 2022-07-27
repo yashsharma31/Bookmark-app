@@ -1,25 +1,15 @@
 import { authConstants} from '../../constants/index'
-const initialState = {
-    userName: '',
-    email: '',
-}
-const auth_reducers = (state=initialState, actions) => {
-    switch (actions.type) {
-        case authConstants.LOGIN_REDUX:
-            console.log("user redux login")
-            return state;
-        case authConstants.LOGOUT_REDUX:
-            console.log("user redux logout")
-            return state;
-        case authConstants.SIGNIN_REDUX:
-            console.log("user redux signin")
-            return state;
-        case authConstants.GETME_REDUX:
-            console.log("user redux get")
-            return state;
-        default:
-            return state;
-    }
-}
+import * as types from '../actions/auth/index';
 
-export default auth_reducers;
+export default function(state = [], action) {
+    let response = action.response;
+  
+    switch(action.type) {
+      case types.REGISTER_USER_SUCCESS:
+        return { ...state, response };
+      case types.REGISTER_USER_ERROR:
+        return { ...state, response };
+      default:
+        return state;
+    }
+  }

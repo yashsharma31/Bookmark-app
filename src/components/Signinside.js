@@ -11,9 +11,12 @@ import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import "../style/login.css";
+import {registerUserAction} from '../redux/actions/index'
 import sly1 from '../assets/Saly-10.png'
 import GoogleIcon from '@mui/icons-material/Google';
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+
 import gql from 'graphql-tag';
 import {useMutation} from '@apollo/react-hooks';
 
@@ -21,32 +24,8 @@ import {useMutation} from '@apollo/react-hooks';
 const theme = createTheme();
 
 function SignInSide() {
+  const dispatch = useDispatch();
 
-  const [values,setValues] = useState({
-    username:'',
-    email:'',
-    password:'',
-  })
-
-  const [addUser,{loading}]= useMutation(REGISTER_USER,{
-    update(proxy,result){
-      console.log(result)
-    },
-    variables:{
-      username: values
-    }
-  })
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    addUser()
-    const data = new FormData(event.currentTarget);
-    console.log({
-      name:data.get('name'),
-      email: data.get('email'),
-      password: data.get('password'),
-    });
-  };
   const GridComponent = styled('Grid')({
     backgroundRepeat: 'no-repeat',
     backgroundColor:' #5352ED',
@@ -81,15 +60,38 @@ function SignInSide() {
     borderColor: '#EEEEEE'
   })
 
-  const onChange = (event) => {
-    setValues({...values,[event.target.name]:event.target.value})
-  }
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const data = new FormData(event.currentTarget);
+    console.log({
+      name: data.get('name'),
+      email: data.get('email'),
+      password: data.get('password'),
+    });
+    onSubmit(data.get('name'),data.get('email'),data.get('password'))
+  };
+  const onSubmit = (name,email, password ) => {
+    console.log({name, email, password });
+  };
+  const onHandleRegistration = (event) => {
+    event.preventDefault();
 
+    let name = event.target.name.value;
+    let email = event.target.email.value;
+    let password = event.target.password.value;
+
+    const data = {
+      name, email, password
+    };
+
+    dispatch(registerUserAction(data));
+  }
 
   
 
 
   return (
+    
     <ThemeProvider theme={theme}>
       <Grid container component="main" sx={{ height: '100vh' }}>
         <CssBaseline />
@@ -107,6 +109,7 @@ function SignInSide() {
         
         <Grid item xs={12} sm={8} md={8} component={Paper} square>
           <MyBox>
+          <form onSubmit={onHandleRegistration}>
             <InterBox component="form"  noValidate onSubmit={handleSubmit}>
             <TextField
                 className='inputRounded'
@@ -117,8 +120,6 @@ function SignInSide() {
                 name="name"
                 autoComplete="name"
                 autoFocus
-                value={values.username}
-                onChange={onChange}
               />
               <TextField
                 className='inputRounded'
@@ -129,8 +130,6 @@ function SignInSide() {
                 name="email"
                 autoComplete="email"
                 autoFocus
-                value={values.email}
-                onChange={onChange}
               />
               <TextField
                 className='inputRounded'
@@ -140,8 +139,6 @@ function SignInSide() {
                 label="Password"
                 type="password"
                 id="password"
-                value={values.password}
-                onChange={onChange}
                 autoComplete="current-password"
               />
               <FormControlLabel
@@ -170,6 +167,7 @@ function SignInSide() {
                   </Link>
                   </Typography>
             </InterBox>
+            </form>
           </MyBox>
         </Grid>
       </Grid>
@@ -177,22 +175,7 @@ function SignInSide() {
   );
 }
 
-const REGISTER_USER = gql`
-  mutation register(
-    $username:String!
-    $email:String!
-    $password:String!
-  ){
-    register(
-      registerInput: {
-        username: $username
-        email: $email
-        password: $username
-      }
-    ){
-      id email username createdAt token
-    }
-  }`
+
 
 
 export default SignInSide;
