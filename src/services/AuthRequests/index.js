@@ -16,7 +16,7 @@ export const registerUserService = async (props) => {
         },
         data: data
     };
-    const res = await axios(config)
+    const res = axios(config)
         .then(function (response) {
         console.dir(response.data);
         addDataToLocalStorage({ key: "@authToken", value: response.data.token });
@@ -28,27 +28,26 @@ export const registerUserService = async (props) => {
     });
     return res;
 };
-export const logInRequest = async ({ email, password }) => {
+export const loginUserService  = async ( props) => {
     const data = JSON.stringify({
-        "email": email,
-        "password": password
+        "email": props.user.email,
+        "password": props.user.password
     });
+    console.log("this is",data)
     const temp_config = {
         method: 'POST',
         url: `${process.env.REACT_APP_URL}/login`,
         data: data
     };
-    console.log(process.env)
     const final_config = setHeaders(temp_config);
     console.dir(final_config, "final config");
     return axios(final_config)
         .then(function (response) {
-        console.log(response);
         addDataToLocalStorage({ key: "@authToken", value: response.data.token });
         return true;
     })
         .catch(function (error) {
-        console.log(error);
+        return false
     });
 };
 export const logoutRequest = async () => {

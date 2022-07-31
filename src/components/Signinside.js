@@ -14,17 +14,18 @@ import "../style/login.css";
 import {registerUserAction} from '../redux/actions/index'
 import sly1 from '../assets/Saly-10.png'
 import GoogleIcon from '@mui/icons-material/Google';
-import { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
+import login_reducer from '../redux/reducers/login_reducer';
 
-import gql from 'graphql-tag';
-import {useMutation} from '@apollo/react-hooks';
 
 
 const theme = createTheme();
 
+
 function SignInSide() {
   const dispatch = useDispatch();
+  
 
   const GridComponent = styled('Grid')({
     backgroundRepeat: 'no-repeat',
@@ -60,19 +61,6 @@ function SignInSide() {
     borderColor: '#EEEEEE'
   })
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      name: data.get('name'),
-      email: data.get('email'),
-      password: data.get('password'),
-    });
-    onSubmit(data.get('name'),data.get('email'),data.get('password'))
-  };
-  const onSubmit = (name,email, password ) => {
-    console.log({name, email, password });
-  };
   const onHandleRegistration = (event) => {
     event.preventDefault();
 
@@ -85,6 +73,9 @@ function SignInSide() {
     };
 
     dispatch(registerUserAction(data));
+    
+    
+
   }
 
   
@@ -110,7 +101,7 @@ function SignInSide() {
         <Grid item xs={12} sm={8} md={8} component={Paper} square>
           <MyBox>
           <form onSubmit={onHandleRegistration}>
-            <InterBox component="form"  noValidate onSubmit={handleSubmit}>
+            <InterBox component="form"  noValidate>
             <TextField
                 className='inputRounded'
                 margin="normal"

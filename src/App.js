@@ -12,6 +12,7 @@ import Signupinside from './components/Signupinside.';
 import BookmarkPage from './components/BookmarkPage';
 import Bookmark_card_table from './components/Bookmark_card_table';
 import Bookmark_card from './components/Bookmark_card';
+import AuthRoute from './routes/AuthRoute';
 
 function App() {
   return (
@@ -19,12 +20,12 @@ function App() {
     
     <div className="center w85">
       <Switch>
-        <Route path="/bookmarkpage">
-          <BookmarkPage />
-        </Route>
-        <Route path="/signin">
+        <AuthRoute path="/bookmarkpage"  type="private">
+          <BookmarkPage/>
+        </AuthRoute>
+        <AuthRoute path="/signin" type="guest">
           <Signupinside />
-        </Route>
+        </AuthRoute>
         <Route path="/">
           <SignInSide />
         </Route>

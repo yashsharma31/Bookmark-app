@@ -5,11 +5,13 @@ import TextField from '@mui/material/TextField';
 import Link from '@mui/material/Link';
 import Paper from '@mui/material/Paper';
 import { styled } from '@mui/system';
+import { useDispatch } from 'react-redux';
+import {loginUserAction} from '../redux/actions/index'
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import "../style/login.css";
-
+import { useSelector } from 'react-redux';
 import { logInRequest } from '../services'
 import sly1 from '../assets/Saly-10.png'
 import {IconButton } from '@mui/material';
@@ -49,23 +51,26 @@ const MyLoginbtn = styled(Button)({
 const theme = createTheme();
 
 
+
 export default function Signupinside() {
-  const handleSubmit = (event) => {
+  const initstage = useSelector((state)=> state.login_reducer.response);
+  const dispatch = useDispatch();
+  const onHandleLogin = (event) => {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
-    onSubmit(data.get('email'),data.get('password'))
-  };
-  const onSubmit = (email, password ) => {
-    console.log({ email, password });
-    console.log("this is the output",logInRequest({ email, password }));
-    return logInRequest({ email, password });
+  
+    let email = event.target.email.value;
+    let password = event.target.password.value;
+  
     
+    const data = {
+      email, password
+    };
+    dispatch(loginUserAction(data));
+    console.log("initstage after this wioo",initstage)
     
-  };
+  }
+
+
 
   return (
     <ThemeProvider theme={theme}>
@@ -87,8 +92,8 @@ export default function Signupinside() {
         />
         <Grid item xs={12} sm={8} md={8} component={Paper} square>
           <MyBox>
-          <form onSubmit={handleSubmit}>
-            <InterBox component="form"  noValidate onSubmit={onSubmit}>
+          <form onSubmit={onHandleLogin}>
+            <InterBox component="form"  noValidate onSubmit={onHandleLogin}>
               <TextField
                 className='inputRounded'
                 margin="normal"

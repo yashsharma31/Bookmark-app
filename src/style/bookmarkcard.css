@@ -8,7 +8,11 @@
     border-width: 1px;
 }
 .image-container{
-    margin-top: 25px;
+    margin: 30px;
+}
+.image-container img{
+    width: 100%;
+    border-radius: 10px;
 }
 .middle-text-card{
     display: grid;
@@ -33,4 +37,8 @@
     position: absolute;
     margin-left: 210px;
     margin-top: 40px;
+    background-color: white;
+    color: gray;
+    padding: 10px;
+    border-radius: 100px;
 }

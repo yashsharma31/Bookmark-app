@@ -1,23 +1,7 @@
 export const REGISTER_USER = 'REGISTER_USER';
 export const REGISTER_USER_SUCCESS = 'REGISTER_USER_SUCCESS';
 export const REGISTER_USER_ERROR = 'REGISTER_USER_ERROR';
-export const LOGIN =(authConstants)=> {
-    return{
-        type:authConstants.LOGIN_REDUX
-    }
-}
-export const LOGOUT =(authConstants)=> {
-    return{
-        type:authConstants.LOGOUT_REDUX
-    }
-}
-export const SIGNIN =(authConstants)=> {
-    return{
-        type:authConstants.SIGNIN_REDUX
-    }
-}
-export const GETME =(authConstants)=> {
-    return{
-        type:authConstants.GETME_REDUX
-    }
-}
+export const INTIAL_STATE = 'INTIAL_STATE';
+export const LOGIN_USER = 'LOGIN_USER';
+export const LOGIN_USER_SUCCESS = 'LOGIN_USER_SUCCESS';
+export const LOGIN_USER_ERROR = 'LOGIN_USER_ERROR';

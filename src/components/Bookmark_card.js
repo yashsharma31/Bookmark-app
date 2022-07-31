@@ -4,18 +4,20 @@ import '../style/bookmarkcard.css'
 import cards from '../assets/bookmark_image.png'
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import chkboxcard from '../assets/checkbox_cards.png';
+import DoneOutlinedIcon from '@mui/icons-material/DoneOutlined';
 import heartcard from '../assets/heart_chkbox.png';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 
 function Bookmark_card() {
   return (
     <div className='outside-container'>
         <div className='chkbox'>
-            <img className='chkboxleft' src={chkboxcard}></img>
-            <img className='heartcardleft' src={heartcard}></img>
+            <DoneOutlinedIcon className='chkboxleft'></DoneOutlinedIcon>
+            <FavoriteBorderIcon className='heartcardleft'></FavoriteBorderIcon>
         </div>
 
         <div className='image-container'>
-            <img src={cards}></img>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Floris_Claesz._van_Dyck_001.jpg/640px-Floris_Claesz._van_Dyck_001.jpg"></img>
             
         </div>
         <div className='middle-text-card'>

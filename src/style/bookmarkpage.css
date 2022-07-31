@@ -60,7 +60,7 @@
     margin-right: 40px;
     margin-bottom: 40px;
     padding: 20px;
-    height: 250px;
+    height: 260px;
     border-radius: 20px;
     background-color: #5352ED;
 }
@@ -136,7 +136,13 @@
 }
 .chkbox{
     position: absolute;
-    padding: 20px;
+}
+.chkboxleft{
+    background-color: #6C6BF9;
+    color: white;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 200px;
 }
 .bookmark-cards-bottom-tiled{
     padding: 40px;
