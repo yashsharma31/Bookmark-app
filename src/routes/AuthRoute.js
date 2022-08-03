@@ -1,17 +1,18 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Redirect, Route } from "react-router";
+import { Navigate, Outlet, Route ,useLocation} from "react-router-dom";
 import { useSelector } from "react-redux";
 
-const AuthRoute = props => {
+const AuthRoute = ({
+  Element,
+  type
+}) => {
   const isAuthUser = useSelector((state)=> state.login_reducer.isAuthUser);
   console.log("isAuthUser",isAuthUser)
-  const {type} = props;
-  console.log(type)
-  if (type === "guest" && isAuthUser)return <Redirect to="/bookmarkpage" />;
-  else if (type === "private" && isAuthUser) return <Redirect to="/" />;
-
-  return <Route {...props} />;
+  if (type === "guest" && isAuthUser)return <Navigate to="/bookmarkpage"  />; 
+  else if (type === "private" && !isAuthUser) return <Navigate to="/" />;
+  console.log(Element)
+  return <Element/>;
 };
 
 const mapStateToProps = ({ isAuthUser }) => ({
@@ -19,3 +20,4 @@ const mapStateToProps = ({ isAuthUser }) => ({
 });
 
 export default connect(mapStateToProps)(AuthRoute);
+
