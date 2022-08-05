@@ -1,7 +1,7 @@
 import * as types from '../../../constants';
 import initialState from '../../initialState';
 
-const folder_reducer = (state = initialState, action) => {
+const folder_reducer = (state = initialState.folders, action) => {
     switch (action.type) {
         case types.CREATE_FOLDER_SUCCESS:
             console.log("user redux creating success");

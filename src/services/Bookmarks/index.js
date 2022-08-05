@@ -7,7 +7,7 @@ export const createBookmark = async (props) => {
     });
     const temp_config = {
         method: 'post',
-        url: `${process.env.REACT_APP_API_URL}/bookmark`,
+        url: `${process.env.REACT_APP_URL}/bookmark`,
         data: data
     };
     const config = setHeaders(temp_config);
@@ -19,7 +19,7 @@ export const DeleteBookmark = async (props) => {
     });
     const temp_config = {
         method: 'DELETE',
-        url: `${process.env.REACT_APP_API_URL}/bookmark`,
+        url: `${process.env.REACT_APP_URL}/bookmark`,
         data: data
     };
     const config = setHeaders(temp_config);
@@ -29,7 +29,7 @@ export const getBookmark = async (props) => {
     const data = '';
     const temp_config = {
         method: 'GET',
-        url: `${process.env.REACT_APP_API_URL}folder-bookmarks?"folderId"="${props.folderId}"`,
+        url: `${process.env.REACT_APP_URL}folder-bookmarks?"folderId"="${props.folderId}"`,
         data: data
     };
     const config = setOnlyAuth(temp_config);
@@ -42,7 +42,7 @@ export const patchBookmark = async (props) => {
     });
     const temp_config = {
         method: 'patch',
-        url: `${process.env.REACT_APP_API_URL}/move-bookmark`,
+        url: `${process.env.REACT_APP_URL}/move-bookmark`,
         data: data
     };
     const config = setHeaders(temp_config);
@@ -54,7 +54,7 @@ export const toggleFavBookmark = async (props) => {
     });
     const temp_config = {
         method: 'put',
-        url: `${process.env.REACT_APP_API_URL}/toggle-favorite`,
+        url: `${process.env.REACT_APP_URL}/toggle-favorite`,
         data: data
     };
     const config = setHeaders(temp_config);
@@ -68,7 +68,7 @@ export const changeDetailsBookmark = async (props) => {
     });
     const temp_config = {
         method: 'put',
-        url: `${process.env.REACT_APP_API_URL}/update-details`,
+        url: `${process.env.REACT_APP_URL}/update-details`,
         data: data
     };
     const config = setHeaders(temp_config);

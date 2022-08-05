@@ -1,7 +1,7 @@
 import * as types from '../../../constants';
 import initialState from '../../initialState';
 
-const bookmark_reducer = (state = initialState, action) => {
+const bookmark_reducer = (state = initialState.bookmarks, action) => {
     switch (action.type) {
         case types.CREATE_BOOKMARK_SUCCESS:
             console.log("user redux creating success");

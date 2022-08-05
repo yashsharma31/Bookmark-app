@@ -53,7 +53,7 @@ const theme = createTheme();
 
 
 export default function Signupinside() {
-  const initstage = useSelector((state)=> state.login_reducer.response);
+  const initstage = useSelector((state)=> state.login_reducer.isAuthUser);
   const dispatch = useDispatch();
   const onHandleLogin = (event) => {
     event.preventDefault();
@@ -66,7 +66,7 @@ export default function Signupinside() {
       email, password
     };
     dispatch(loginUserAction(data));
-    console.log("initstage after this wioo",initstage)
+    console.log("initstage after this wioo",data)
     
   }
 

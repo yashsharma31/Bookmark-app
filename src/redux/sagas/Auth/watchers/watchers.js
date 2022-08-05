@@ -1,5 +1,5 @@
 import { takeLatest } from 'redux-saga/effects';
-import { registerSaga,loginSaga } from '../functions';
+import { registerSaga,loginSaga } from '../functions/index';
 import * as types from '../../../../constants/index';
 export default function* watchUserAuthentication() {
     yield takeLatest(types.REGISTER_USER, registerSaga);

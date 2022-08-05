@@ -15,6 +15,7 @@ export function* loginSaga(payload) {
     console.log('login',response)
     yield put({ type: types.LOGIN_USER_SUCCESS, response });
   } catch(error) {
+    console.log('login',error)
     yield put({ type: types.LOGIN_USER_ERROR, error })
   }
 }

@@ -4,5 +4,5 @@ import bookmarkSagas from './Bookmarks/watchers';
 import folderSagas from './Folders/watchers';
 
 export function* startForman() {
-  yield all[fork(watchUserAuthentication),fork(bookmarkSagas),fork(folderSagas)];
+  yield all([fork(watchUserAuthentication),fork(bookmarkSagas),fork(folderSagas)]);
 }

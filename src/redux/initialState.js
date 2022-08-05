@@ -8,6 +8,7 @@ const initialState={
         isAuthUser:false
     },
     bookmarks: {},
-    error: ""
+    error: "",
+    folders: {},
 }
 export default initialState;
