@@ -7,7 +7,7 @@ const bookmark_reducer = (state = initialState.bookmarks, action) => {
         case types.CREATE_BOOKMARK_SUCCESS:
             console.log("user redux creating success");
             console.log("creating success",action.payload);
-            return { error: "", bookmarks: Object.assign({}, action.payload) };
+            return { error: "", bookmarks: Object.assign({}, action.response.data) };
         case types.CREATE_BOOKMARK_ERROR:
             console.log("user redux creating fail");
             return Object.assign(Object.assign({}, state), { error: "failed to create bookmark" });

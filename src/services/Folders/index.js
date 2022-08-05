@@ -29,11 +29,23 @@ export const getFolder = async (props) => {
     const data = '';
     const temp_config = {
         method: 'GET',
-        url: `${process.env.REACT_APP_URL}folders?"folderId"="${props.folderId}"`,
+        url: `${process.env.REACT_APP_URL}/folders?"folderId"="${props.folderId}"`,
         data: data
     };
     const config = setOnlyAuth(temp_config);
-    return await axios(config);
+    const response = await axios(config)
+    return response.data;
+};
+export const getbaseFolder = async () => {
+    const data = '';
+    const temp_config = {
+        method: 'GET',
+        url: `${process.env.REACT_APP_URL}/folders`,
+        data: data
+    };
+    const config = setOnlyAuth(temp_config);
+    const response = await axios(config)
+    return response.data;
 };
 export const renameFolder = async (props) => {
     const data = JSON.stringify({
