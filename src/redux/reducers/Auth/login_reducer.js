@@ -1,5 +1,5 @@
-import * as types from '../actions/auth/index';
-import initialState from '../initialState';
+import * as types from '../../../constants/index';
+import initialState from '../../initialState';
 
 export default function(state = initialState, action) {
   const isAuthUser = action.response;

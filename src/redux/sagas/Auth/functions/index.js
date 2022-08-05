@@ -1,6 +1,6 @@
 import { put, call } from 'redux-saga/effects';
-import { registerUserService,loginUserService } from '../../../services/AuthRequests/index';
-import * as types from '../../actions/auth/index'
+import { registerUserService,loginUserService } from '../../../../services/AuthRequests/index';
+import * as types from '../../../../constants/index'
 export function* registerSaga(payload) {
     try {
       const response = yield call(registerUserService, payload);

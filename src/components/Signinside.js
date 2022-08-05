@@ -11,12 +11,12 @@ import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import "../style/login.css";
-import {registerUserAction} from '../redux/actions/index'
+import {registerUserAction} from '../redux/actions/Auth/index';
 import sly1 from '../assets/Saly-10.png'
 import GoogleIcon from '@mui/icons-material/Google';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
-import login_reducer from '../redux/reducers/login_reducer';
+import login_reducer from '../redux/reducers/Auth/login_reducer';
 
 
 

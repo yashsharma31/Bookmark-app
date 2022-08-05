@@ -1,4 +1,4 @@
-import * as types from '../redux/actions/auth/index'
+import * as types from '../constants/index'
 
 const initialState={
     login_reducer:{
@@ -6,6 +6,8 @@ const initialState={
     },
     auth_reducers:{
         isAuthUser:false
-    }
+    },
+    bookmarks: {},
+    error: ""
 }
 export default initialState;

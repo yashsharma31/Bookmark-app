@@ -7,3 +7,9 @@ export const setHeaders = (config) => {
             'Content-Type': 'application/json',
         } });
 };
+export const setOnlyAuth = (config) => {
+    const token = getDataFromLocalStorage({ key: '@authToken' });
+    return Object.assign(Object.assign({}, config), { headers: {
+            'Authorization': `Bearer ${token}`,
+        } });
+};
