@@ -5,6 +5,7 @@ export const createBookmark = async (props) => {
         "url": props.url,
         "name": props.name
     });
+    console.log("here is createbookmark",data)
     const temp_config = {
         method: 'post',
         url: `${process.env.REACT_APP_URL}/bookmark`,

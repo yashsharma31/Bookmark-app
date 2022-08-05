@@ -10,6 +10,8 @@ import AddIcon from '@mui/icons-material/Add';
 import Bookmark_card from './Bookmark_card';
 import Bookmark_card_table from './Bookmark_card_table';
 import { useState } from 'react'
+import { useDispatch } from 'react-redux/es/exports'
+import * as bookmarkaction from "../redux/actions/Bookmarks";
 
 
 
@@ -113,14 +115,33 @@ const MaterialUISwitch = styled(Switch)(({ theme }) => ({
     color:"#5352ED",
     backgroundColor:"white"
   });
+const handleclick=()=>{
 
+}
 
 function BookmarkPage() {
     const [checked, setChecked] = useState(false);
+    const dispatch = useDispatch();
 
     const switchHandler = (event) => {
         setChecked(event.target.checked);
     };
+
+    const onHandleurlsubmit = (event) => {
+      event.preventDefault();
+      let url = event.target.url.value;
+  
+      const data = {
+        url,
+        name:"bennett222"
+      };
+      console.log(data);
+      dispatch(bookmarkaction.createbookmark(data));
+    }
+  
+
+
+
   return (
     <>
     <div className='outer-container'>
@@ -148,6 +169,7 @@ function BookmarkPage() {
             <div className='quick-link-box'>
                 <div className='left-quick-link-box'>
                     <MyTypography variant='h1'>Add Quick Link</MyTypography>
+                    <form onSubmit={onHandleurlsubmit}>
                     <div className='url-box'>
                         <MyTypographyInner variant='h6'>URL</MyTypographyInner>
                         <MyTextfield
@@ -172,9 +194,10 @@ function BookmarkPage() {
                                 size="large"
                                 >Save
                             </MyButton>
-
                         </div>
+                        
                     </div>
+                    </form>
                 </div>
                 <div className='right-quick-link-box-image'>
                     <img src={quicklinkvr}></img>

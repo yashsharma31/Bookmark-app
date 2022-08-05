@@ -3,10 +3,12 @@ import { call, put } from 'redux-saga/effects';
 import { changeDetailsBookmark, createBookmark, DeleteBookmark, getBookmark, patchBookmark, toggleFavBookmark } from '../../../../services';
 export function* CreateBookmarkWatcherFunction(action) {
     try {
-        console.log(action);
+        console.log('action=',action);
+        console.log("parameters-name",action.payload.name)
+        console.log("parameters-url",action.payload.url)
         const response = yield call(createBookmark, { name: action.payload.name, url: action.payload.url });
-        console.log(response);
-        yield put({ type: types.CREATE_BOOKMARK_SUCCESS });
+        console.log('response=',response);
+        yield put({ type: types.CREATE_BOOKMARK_SUCCESS , payload:action.payload});
     }
     catch (e) {
         yield put({ type: types.CREATE_BOOKMARK_ERROR });

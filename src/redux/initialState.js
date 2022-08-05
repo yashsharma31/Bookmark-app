@@ -7,8 +7,13 @@ const initialState={
     auth_reducers:{
         isAuthUser:false
     },
-    bookmarks: {},
-    error: "",
-    folders: {},
+    bookmarks: {
+        bookmarks:{},
+        error: "",
+    },
+    folders: {
+        folders:{},
+        error: "",
+    },
 }
 export default initialState;

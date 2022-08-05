@@ -3,7 +3,7 @@ import * as types from '../../../constants/index'
 export const createfolder = (folder) => {
     return {
       type: types.CREATE_FOLDER,
-      folder
+      payload:folder
     }
   };
 
@@ -15,12 +15,12 @@ export const readfolder = () => {
 export const deletefolder = (folder) => {
     return {
       type: types.DELETE_FOLDER,
-      folder
+      payload:folder
     }
   };
 export const updatefolder = (folder) => {
     return {
       type: types.UPDATE_FOLDER,
-      folder
+      payload:folder
     }
   };
