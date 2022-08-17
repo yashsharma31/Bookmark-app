@@ -1,6 +1,6 @@
 import * as types from '../../../../constants';
 import { call, put } from 'redux-saga/effects';
-import { changeDetailsBookmark, createBookmark, DeleteBookmark, getBookmark, patchBookmark, toggleFavBookmark } from '../../../../services';
+import { changeDetailsBookmark, createBookmark, DeleteBookmark, getBookmark, patchBookmark, getbaseBookmark,toggleFavBookmark } from '../../../../services';
 export function* CreateBookmarkWatcherFunction(action) {
     try {
         console.log('action=',action);
@@ -27,10 +27,16 @@ export function* DeleteBookmarkWatcherFunction(action) {
 }
 export function* GetBookmarkWatcherFunction(action) {
     try {
-        console.log(action);
-        const response = yield call(getBookmark, { folderId: action.payload.folderId });
-        console.log(response);
-        yield put({ type: types.READ_BOOKMARK_SUCCESS });
+        console.log("action",action.payload);
+        var response;
+        if(typeof action.payload === 'undefined'){
+            response = yield call(getbaseBookmark);
+        }
+        else{
+            response = yield call(getBookmark, { folderId: action.payload.folderId });
+        }
+        console.log("response",response);
+        yield put({ type: types.READ_BOOKMARK_SUCCESS ,response});
     }
     catch (e) {
         yield put({ type: types.READ_BOOKMARK_ERROR });

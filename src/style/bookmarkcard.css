@@ -6,12 +6,16 @@
     border-color: #E4E2E7;
     border-radius: 20px;
     border-width: 1px;
+    margin-bottom: 20px;
 }
 .image-container{
-    margin: 30px;
+    display: flex;
+    justify-content: center;
+    margin: 25px;
 }
 .image-container img{
-    width: 100%;
+    width: 320px;
+    height: 200px;
     border-radius: 10px;
 }
 .middle-text-card{

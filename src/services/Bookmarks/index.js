@@ -30,11 +30,22 @@ export const getBookmark = async (props) => {
     const data = '';
     const temp_config = {
         method: 'GET',
-        url: `${process.env.REACT_APP_URL}folder-bookmarks?"folderId"="${props.folderId}"`,
+        url: `${process.env.REACT_APP_URL}/folder-bookmarks?"folderId"="${props.folderId}"`,
         data: data
     };
     const config = setOnlyAuth(temp_config);
     return await axios(config);
+};
+export const getbaseBookmark = async () => {
+    const data = '';
+    const temp_config = {
+        method: 'GET',
+        url: `${process.env.REACT_APP_URL}/folder-bookmarks`,
+        data: data
+    };
+    const config = setOnlyAuth(temp_config);
+    const bookmarks = await axios(config)
+    return bookmarks.data;
 };
 export const patchBookmark = async (props) => {
     const data = JSON.stringify({

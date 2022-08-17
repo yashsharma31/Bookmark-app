@@ -20,6 +20,8 @@
 .right-side-container{
     display: flex;
     flex-direction: column;
+    overflow-y: auto;
+    max-height: 720px;
     
 }
 .search_bar_left{
@@ -55,7 +57,6 @@
     color: white;
     display: grid;
     grid-template-columns: 60% 40%;
-    margin-top: 100px;
     margin-left: 40px;
     margin-right: 40px;
     margin-bottom: 40px;
@@ -129,10 +130,9 @@
 }
 .bookmark-cards-bottom{
     padding: 40px;
-    display: flex;
-    flex-direction: row;
+    display: grid;
+    grid-template-columns: 33% 33% 33%;
     justify-content: space-between;
-    margin: 0%;
 }
 .chkbox{
     position: absolute;
@@ -150,6 +150,23 @@
     display: flex;
     justify-content: space-between;
     flex-direction: column;
+}
+.login-user-details{
+    display: flex;
+    justify-content: right;
+    margin: 40px;
+    align-items: center;
+}
+.favourite_button{
+    margin-top: 340px;
+}
+.logout_button{
+    margin: 0;
+}
+.loading_bookmarks{
+    display: flex;
+    justify-content: center;
+    margin: 40px;
 }
 
 @media only screen and (max-width: 600px) {

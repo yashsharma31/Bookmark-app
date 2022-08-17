@@ -1,8 +1,8 @@
 import * as types from '../../../constants';
 import initialState from '../../initialState';
 
-const bookmark_reducer = (state = initialState.bookmarks, action) => {
-    console.log(action)
+const bookmark_reducer = (state = initialState.bookmark_reducers, action) => {
+    //console.log(action)
     switch (action.type) {
         case types.CREATE_BOOKMARK_SUCCESS:
             console.log("user redux creating success");
@@ -17,9 +17,12 @@ const bookmark_reducer = (state = initialState.bookmarks, action) => {
         case types.DELETE_BOOKMARK_ERROR:
             console.log("user redux delete fail");
             return Object.assign(Object.assign({}, state), { error: "failed to delete bookmark" });
+        case types.READ_BOOKMARK_LOADING:
+            return{ error: "", bookmarks: "Loading" }
         case types.READ_BOOKMARK_SUCCESS:
+            console.log("response:",action)
             console.log("user redux.READ  success");
-            return { error: "", bookmarks: Object.assign({}, action.payload) };
+            return { error: "", bookmarks: action.response };
         case types.READ_BOOKMARK_ERROR:
             console.log("user redux .READ fail");
             return Object.assign(Object.assign({}, state), { error: "failed to read bookmarks" });

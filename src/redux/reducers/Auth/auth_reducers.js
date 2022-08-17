@@ -4,6 +4,8 @@ import initialState from '../../initialState';
 function auth_reducers(state=initialState.auth_reducers, action){
     let isAuthUser = action.response;
     switch(action.type) {
+      case types.REGISTER_USER_LOADING:
+        return {...state, isAuthUser:"Loading"}
       case types.REGISTER_USER_SUCCESS:
         return { ...state, isAuthUser};
       case types.REGISTER_USER_ERROR:

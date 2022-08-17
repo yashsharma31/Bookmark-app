@@ -1,34 +1,44 @@
 import { IconButton,Typography } from '@mui/material'
 import React from 'react'
 import '../style/bookmarkcard.css'
-import cards from '../assets/bookmark_image.png'
 import MoreVertIcon from '@mui/icons-material/MoreVert';
-import chkboxcard from '../assets/checkbox_cards.png';
 import DoneOutlinedIcon from '@mui/icons-material/DoneOutlined';
-import heartcard from '../assets/heart_chkbox.png';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import placeholderimg from "../assets/placeholderimg.jpg"
 
-function Bookmark_card() {
+function Bookmark_card(props) {
+    const MAX_LENGTH = 60;
+    //console.log(props.bookmark_name)
+    const checkForImage=(imgg)=>{
+        if(imgg==""){
+            return true
+        }
+        else{
+            return false
+        }
+    }
   return (
     <div className='outside-container'>
         <div className='chkbox'>
-            <DoneOutlinedIcon className='chkboxleft'></DoneOutlinedIcon>
-            <FavoriteBorderIcon className='heartcardleft'></FavoriteBorderIcon>
+            {/* <DoneOutlinedIcon className='chkboxleft'></DoneOutlinedIcon>
+            <FavoriteBorderIcon className='heartcardleft'></FavoriteBorderIcon> */}
         </div>
 
         <div className='image-container'>
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Floris_Claesz._van_Dyck_001.jpg/640px-Floris_Claesz._van_Dyck_001.jpg"></img>
+            {checkForImage(props.bookmark_img)?<img src={placeholderimg}></img>:
+            <img src={props.bookmark_img}></img>}
+            
             
         </div>
         <div className='middle-text-card'>
-            <Typography variant='h6'>Title Lorem Ipsum</Typography>
+            <Typography variant='h6'>{props.bookmark_name}</Typography>
             <IconButton aria-label="moreVertical">
                 <MoreVertIcon/>
             </IconButton>
 
         </div>
         <div>
-            <Typography className='bookmark-card-bottom-text'>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</Typography>
+            <Typography className='bookmark-card-bottom-text'>{`${props.bookmark_des.substring(0, MAX_LENGTH)}...`}</Typography>
         </div>
     </div>
   )

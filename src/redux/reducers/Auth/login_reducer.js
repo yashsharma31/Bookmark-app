@@ -3,13 +3,15 @@ import initialState from '../../initialState';
 
 export default function(state = initialState.login_reducer, action) {
   const isAuthUser = action.response;
-  console.log(action)
+  //console.log(action.getuser)
 
   switch(action.type) {
     case types.LOGIN_USER_SUCCESS:
-      return { ...state, isAuthUser , folders : action.folders};
+      return { ...state, isAuthUser,userdata:action.getuser};
     case types.LOGIN_USER_ERROR:
-      return { ...state, isAuthUser };
+      return { ...state, isAuthUser: "error"};
+    case types.LOGIN_USER_LOADING:
+      return {...state, isAuthUser:"Loading"}
     default:
       return state;
   }

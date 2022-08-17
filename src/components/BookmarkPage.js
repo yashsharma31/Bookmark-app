@@ -1,18 +1,27 @@
-import { Button, FormControlLabel, IconButton, TextField, Typography } from '@mui/material'
-import React from 'react'
+import { Button, CircularProgress, FormControlLabel, IconButton, LinearProgress, TextField, Typography } from '@mui/material'
+import React, { useEffect } from 'react'
 import '../style/bookmarkpage.css'
 import quicklinkvr from '../assets/quicklink.png'
 import bookmarklogo from '../assets/bookmarklogo.png'
+import profile_img from '../assets/profile_img.png'
 import Switch from '@mui/material/Switch';
 import { styled } from '@mui/material/styles';
 import SearchIcon from '@mui/icons-material/Search';
 import AddIcon from '@mui/icons-material/Add';
+import LogoutIcon from '@mui/icons-material/Logout';
 import Bookmark_card from './Bookmark_card';
+import FavoriteIcon from '@mui/icons-material/Favorite';
 import Bookmark_card_table from './Bookmark_card_table';
+import { useSelector } from 'react-redux/es/exports'
 import { useState } from 'react'
 import { useDispatch } from 'react-redux/es/exports'
+import * as authaction from "../redux/actions/Auth";
 import * as bookmarkaction from "../redux/actions/Bookmarks";
-
+import * as folderaction from "../redux/actions/Folders";
+import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
+import { Formik } from "formik";
+import * as EmailValidator from "email-validator";
+import * as Yup from "yup";
 
 
 
@@ -64,24 +73,24 @@ const MaterialUISwitch = styled(Switch)(({ theme }) => ({
   }));
 
   const MyTypography = styled(Typography)({
-    fontSize: '20px',
+    fontSize: '25px',
     fontFamily:'Inter',
-    fontWeight:'700'
+    fontWeight:'400'
   });
   const MyTypographyInner = styled(Typography)({
-    fontSize: '12px',
+    fontSize: '14px',
     fontFamily:'Inter',
     fontWeight:'400'
   });
   const MyTextfield = styled(TextField)({
-    marginTop:"20px",
+    marginTop:"10px",
     borderRadius: '15px',
     height:'50px',
     color:"white"
   });
   const MyButton = styled(Button)({
     borderRadius: '15px',
-    marginTop:"20px",
+    marginTop:"10px",
     height:'50px',
     width:'150px' ,
     textTransform: 'none',
@@ -93,7 +102,7 @@ const MaterialUISwitch = styled(Switch)(({ theme }) => ({
   });
 
   const My2ndButton = styled(Button)({
-    marginTop:"20px",
+    marginTop:"10px",
     borderRadius: '15px',
     height:'50px',
     width:'300px',
@@ -115,14 +124,59 @@ const MaterialUISwitch = styled(Switch)(({ theme }) => ({
     color:"#5352ED",
     backgroundColor:"white"
   });
-const handleclick=()=>{
-
-}
+  const Profiletypo_name = styled(Typography)({
+    marginLeft:"10px",
+    marginRight:"10px",
+    fontFamily:'Inter' ,
+    fontWeight:'800',
+    opacity:"80%"
+  });
+  const Profiletypo_email = styled(Typography)({
+    marginLeft:"10px",
+    marginRight:"10px",
+    fontFamily:'Inter' ,
+    fontWeight:'400',
+    fontSize:"12px",
+    opacity:"60%"
+  });
+  const MyLoginbtn = styled(Button)({
+    marginTop:"20px",
+    marginBottom:"5px",
+    borderRadius: '16px',
+    height:'50px' ,
+    textTransform: 'none',
+    fontSize: '16px',
+    fontFamily:'Inter' ,
+    fontWeight:'500',
+    borderColor: '#EEEEEE'
+  })
+  const LeftSideButtons = styled(Button)({
+    marginBottom:"10px",
+    borderRadius: '16px',
+    height:'50px' ,
+    textTransform: 'none',
+    fontSize: '16px',
+    fontFamily:'Inter' ,
+    fontWeight:'500',
+    borderColor: '#EEEEEE'
+  })
 
 function BookmarkPage() {
     const [checked, setChecked] = useState(false);
     const dispatch = useDispatch();
-
+    const initState = useSelector((state)=> state.login_reducer);
+    const user_data = useSelector((state)=> state.getme_reducer.userData);
+    //const base_folders = useSelector((state)=> state.login_reducer.folders);
+    const base_bookmarks = useSelector((state)=> state.bookmark_reducer.bookmarks);
+    //console.log(user_data)
+    useEffect(() => {
+      //console.log("dispatching")
+      dispatch(bookmarkaction.readbookmark())
+      dispatch(authaction.getMeAction())
+      //console.log("bookamrk_length",base_bookmarks.length)
+      //dispatch(folderaction.readfolder())
+    },[])
+    
     const switchHandler = (event) => {
         setChecked(event.target.checked);
     };
@@ -137,6 +191,9 @@ function BookmarkPage() {
       };
       console.log(data);
       dispatch(bookmarkaction.createbookmark(data));
+    }
+    const handleLogout = () => {
+      dispatch(authaction.logoutAction())
     }
   
 
@@ -163,9 +220,27 @@ function BookmarkPage() {
                     placeholder='Search...'
                 />
             </div>
+            <div className='favourite_button'>
+              <LeftSideButtons fullWidth startIcon={<FavoriteIcon />}>Favourites</LeftSideButtons>
+            </div>
+            <div className='logout_button'>
+              <LeftSideButtons fullWidth startIcon={<LogoutIcon />} onClick={handleLogout}>Logout</LeftSideButtons>
+            </div>
             
         </div>
         <div className='right-side-container'>
+          <div className="login-user-details">
+            <div><img src={profile_img}></img></div>
+              <div>
+              <Profiletypo_name>{user_data=="Loading"?<CircularProgress />:user_data.name}</Profiletypo_name>
+              <Profiletypo_email>{user_data.email}</Profiletypo_email>
+              </div>
+              <div>
+              <IconButton aria-label="bt-moreVertical">
+                <KeyboardArrowUpIcon/>
+              </IconButton>
+              </div>
+          </div>
             <div className='quick-link-box'>
                 <div className='left-quick-link-box'>
                     <MyTypography variant='h1'>Add Quick Link</MyTypography>
@@ -230,18 +305,23 @@ function BookmarkPage() {
             
                 
             </div>
-            <div className={checked?'bookmark-cards-bottom':'bookmark-cards-bottom-tiled'}>
-            {checked?
-                <><Bookmark_card/>
-                <Bookmark_card/>
-                <Bookmark_card/></>
+            {base_bookmarks.length==0?<div className='loading_bookmarks'><CircularProgress /></div>:
+            <div className={!checked?'bookmark-cards-bottom':'bookmark-cards-bottom-tiled'}>
+            {!checked?
+              base_bookmarks.map((ele)=><Bookmark_card 
+                key={ele.id}
+                bookmark_name={ele.name} 
+                bookmark_des={ele.description} 
+                bookmark_img={ele.imageUrl}/>)
                 :
-                <><Bookmark_card_table/>
-                <Bookmark_card_table/>
-                <Bookmark_card_table/>
-                <Bookmark_card_table/></>}
+                base_bookmarks.map((ele)=><Bookmark_card_table 
+                  key={ele.id}
+                  bookmark_name={ele.name} 
+                  bookmark_des={ele.description} 
+                  bookmark_img={ele.imageUrl}/>)
+                }
                 
-            </div>
+            </div>}
         </div>
         
     </div>

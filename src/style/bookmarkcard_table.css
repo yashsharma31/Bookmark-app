@@ -18,6 +18,7 @@
 }
 .bt-image-container img{
     width:150px;
+    height: 100px;
     border-radius: 10px;
    
 }

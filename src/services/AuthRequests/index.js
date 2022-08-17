@@ -1,4 +1,4 @@
-import { setHeaders } from "../Headers";
+import { setHeaders, setOnlyAuth } from "../Headers";
 import { addDataToLocalStorage, removeDataFromLocalStorage,getDataFromLocalStorage } from "../LocalStorage";
 const axios = require('axios');
 
@@ -20,7 +20,7 @@ export const registerUserService = async (props) => {
         .then(function (response) {
         console.dir(response.data);
         addDataToLocalStorage({ key: "@authToken", value: response.data.token });
-        return true;
+        return response;
     })
         .catch(function (error) {
         console.log(error);
@@ -33,15 +33,15 @@ export const loginUserService  = async ( props) => {
         "email": props.user.email,
         "password": props.user.password
     });
-    console.log("this is",data)
+    //console.log("this is",data)
     const temp_config = {
         method: 'POST',
         url: `${process.env.REACT_APP_URL}/login`,
         data: data
     };
     const final_config = setHeaders(temp_config);
-    console.dir(final_config, "final config");
-    return axios(final_config)
+    //console.dir(final_config, "final config");
+    return await axios(final_config)
         .then(function (response) {
         addDataToLocalStorage({ key: "@authToken", value: response.data.token });
         return true;
@@ -49,6 +49,17 @@ export const loginUserService  = async ( props) => {
         .catch(function (error) {
         return false
     });
+};
+export const getmeService = async () => {
+    const data = '';
+    const temp_config = {
+        method: 'GET',
+        url: `${process.env.REACT_APP_URL}/me`,
+        data: data
+    };
+    const config = setOnlyAuth(temp_config);
+    const resp = await axios(config)
+    return resp.data;
 };
 export const logoutRequest = async () => {
     removeDataFromLocalStorage({ key: "@authToken" });
