@@ -1,7 +1,7 @@
 import * as types from '../../../constants/index';
 import initialState from '../../initialState';
 
-function auth_reducers(state=initialState.getme_reducer, action){
+function authReducers(state=initialState.getMeReducers, action){
     let userData = action.response;
     switch(action.type) {
       case types.GETME_USER_LOADING:
@@ -15,4 +15,4 @@ function auth_reducers(state=initialState.getme_reducer, action){
     }
   }
 
-  export default auth_reducers;
+  export default authReducers;

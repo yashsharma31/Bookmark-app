@@ -1,8 +1,8 @@
 import * as types from '../../../constants';
 import initialState from '../../initialState';
 
-const bookmark_reducer = (state = initialState.bookmark_reducers, action) => {
-    //console.log(action)
+const bookmarkReducers = (state = initialState.bookmarkReducers, action) => {
+
     switch (action.type) {
         case types.CREATE_BOOKMARK_SUCCESS:
             console.log("user redux creating success");
@@ -48,4 +48,4 @@ const bookmark_reducer = (state = initialState.bookmark_reducers, action) => {
             return state;
     }
 };
-export default bookmark_reducer;
+export default bookmarkReducers;

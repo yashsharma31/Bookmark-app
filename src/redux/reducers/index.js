@@ -1,15 +1,15 @@
-import auth_reducers from './Auth/auth_reducers'
-import login_reducer from './Auth/login_reducer';
-import bookmark_reducer from './Bookmarks/index'
+import authReducers from './Auth/authReducers'
+import loginReducers from './Auth/loginReducers';
+import bookmarkReducers from './Bookmarks/index'
 import { combineReducers } from "redux";
 import { Navigate } from 'react-router-dom';
 import {removeDataFromLocalStorage} from "../../services/LocalStorage"
-import folder_reducer from './Folders';
-import getme_reducer from './Auth/getme_reducer'
+import folderReducer from './Folders';
+import getMeReducers from './Auth/getMeReducers'
 import * as types from "../../constants"
 
 const appReducer = combineReducers({
-  auth_reducers,login_reducer,bookmark_reducer,folder_reducer,getme_reducer
+  authReducers: authReducers,loginReducers: loginReducers,bookmarkReducers: bookmarkReducers,folderReducers: folderReducer,getMeReducers: getMeReducers
 })
 
 const rootReducer = (state, action) => {

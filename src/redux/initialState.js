@@ -1,19 +1,19 @@
 const initialState = {
-    login_reducer: {
+    loginReducers: {
         isAuthUser: false
     },
-    auth_reducers: {
+    authReducer: {
         isAuthUser: false
     },
-    bookmark_reducers: {
+    bookmarkReducers: {
         bookmarks: [],
         error: "",
     },
-    folder_reducers: {
+    folderReducers: {
         folders: [],
         error: "",
     },
-    getme_reducer: {
+    getMeReducers: {
         userData:[]
     }
 }

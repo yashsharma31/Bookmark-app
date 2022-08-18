@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Navigate, Outlet, Route ,useLocation} from "react-router-dom";
+import { Navigate} from "react-router-dom";
 import { useSelector } from "react-redux";
 import { getDataFromLocalStorage } from "../services/LocalStorage";
 
@@ -10,7 +10,7 @@ const AuthRoute = ({
 }) => {
   const token = getDataFromLocalStorage({ key: '@authToken' });
   //console.log("here is token",token)
-  const isAuthUser = useSelector((state)=> state.login_reducer.isAuthUser);
+  const isAuthUser = useSelector((state)=> state.loginReducers.isAuthUser);
   //console.log("isAuthUser",isAuthUser)
   if (type === "guest" && token!= null)return <Navigate to="/bookmarkpage"  />; 
   else if (type === "private" && token==null) return <Navigate to="/" />;

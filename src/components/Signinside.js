@@ -16,7 +16,7 @@ import sly1 from '../assets/Saly-10.png'
 import GoogleIcon from '@mui/icons-material/Google';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
-import login_reducer from '../redux/reducers/Auth/login_reducer';
+import loginReducers from '../redux/reducers/Auth/loginReducers';
 
 
 

@@ -1,7 +1,7 @@
 import * as types from '../../../constants/index';
 import initialState from '../../initialState';
 
-function auth_reducers(state=initialState.auth_reducers, action){
+function authReducers(state=initialState.authReducer, action){
     let isAuthUser = action.response;
     switch(action.type) {
       case types.REGISTER_USER_LOADING:
@@ -15,4 +15,4 @@ function auth_reducers(state=initialState.auth_reducers, action){
     }
   }
 
-  export default auth_reducers;
+  export default authReducers;

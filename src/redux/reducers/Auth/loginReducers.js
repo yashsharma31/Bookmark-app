@@ -1,9 +1,8 @@
 import * as types from '../../../constants/index';
 import initialState from '../../initialState';
 
-export default function(state = initialState.login_reducer, action) {
+export default function(state = initialState.loginReducers, action) {
   const isAuthUser = action.response;
-  //console.log(action.getuser)
 
   switch(action.type) {
     case types.LOGIN_USER_SUCCESS:
