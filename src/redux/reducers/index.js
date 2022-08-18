@@ -2,7 +2,6 @@ import authReducers from "./Auth/authReducers";
 import loginReducers from "./Auth/loginReducers";
 import bookmarkReducers from "./Bookmarks/index";
 import { combineReducers } from "redux";
-import { Navigate } from "react-router-dom";
 import { removeDataFromLocalStorage } from "../../services/LocalStorage";
 import folderReducer from "./Folders";
 import getMeReducers from "./Auth/getMeReducers";

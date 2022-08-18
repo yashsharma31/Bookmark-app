@@ -30,13 +30,6 @@ const theme = createTheme();
 export default function Signupinside() {
   const initStage = useSelector((state) => state.loginReducers.isAuthUser);
   const dispatch = useDispatch();
-  const loadingState = (stt) => {
-    if (stt == "Loading") {
-      return true;
-    } else {
-      return false;
-    }
-  };
 
   return (
     <ThemeProvider theme={theme}>
@@ -110,7 +103,11 @@ export default function Signupinside() {
                     <MyLoginbtn
                       type="submit"
                       fullWidth
-                      loading={props.isSubmitting || loadingState(initStage)}
+                      loading={
+                        props.isSubmitting || initStage == "Loading"
+                          ? true
+                          : false
+                      }
                       loadingPosition="end"
                       variant="contained"
                     >
