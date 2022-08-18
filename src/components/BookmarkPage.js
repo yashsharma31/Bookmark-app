@@ -34,6 +34,7 @@ import * as authAction from "../redux/actions/Auth";
 import * as bookmarkAction from "../redux/actions/Bookmarks";
 import * as folderaction from "../redux/actions/Folders";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
+import BookmarkFolder from "./BookmarkFolder";
 
 function BookmarkPage() {
   const [checked, setChecked] = useState(false);
@@ -42,9 +43,15 @@ function BookmarkPage() {
   const baseBookmarks = useSelector(
     (state) => state.bookmarkReducers.bookmarks
   );
+
+  const baseFolders = useSelector((state) => state.folderReducers.folders);
+
   useEffect(() => {
     dispatch(bookmarkAction.readBookmark());
     dispatch(authAction.getMeAction());
+    dispatch(folderaction.readFolder());
+
+    //console.log("here it is",baseFolders)
   }, []);
 
   const switchHandler = (event) => {
@@ -85,6 +92,19 @@ function BookmarkPage() {
               type="text"
               placeholder="Search..."
             />
+          </div>
+          <div className="folder-container">
+            {baseFolders == "Loading" ? (
+              <div className="loading_bookmarks">
+                <CircularProgress />
+              </div>
+            ) : (
+              <>
+                {baseFolders.map((ele) => (
+                  <BookmarkFolder key={ele.id} folder_name={ele.name} />
+                ))}
+              </>
+            )}
           </div>
           <div className="favourite_button">
             <LeftSideButtons fullWidth startIcon={<FavoriteIcon />}>

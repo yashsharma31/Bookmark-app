@@ -1,48 +1,48 @@
-.outside-container{
-    display: block;
-    height: 400px;
-    width: 360px;
-    border: solid;
-    border-color: #E4E2E7;
-    border-radius: 20px;
-    border-width: 1px;
-    margin-bottom: 20px;
+.outside-container {
+  display: block;
+  height: 400px;
+  width: 360px;
+  border: solid;
+  border-color: #e4e2e7;
+  border-radius: 20px;
+  border-width: 1px;
+  margin-bottom: 20px;
 }
-.image-container{
-    display: flex;
-    justify-content: center;
-    margin: 25px;
+.image-container {
+  display: flex;
+  justify-content: center;
+  margin: 25px;
 }
-.image-container img{
-    width: 320px;
-    height: 200px;
-    border-radius: 10px;
+.image-container img {
+  width: 320px;
+  height: 200px;
+  border-radius: 10px;
 }
-.middle-text-card{
-    display: grid;
-    grid-template-columns: 90% 10%;
-    text-align: left;
-    margin-right: 15px;
-    margin-left: 25px;
+.middle-text-card {
+  display: grid;
+  grid-template-columns: 90% 10%;
+  text-align: left;
+  margin-right: 15px;
+  margin-left: 25px;
 }
-.bookmark-card-bottom-text{
-    text-align: left;
-    padding-right: 80px;
-    padding-left: 25px;
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 500;
-    font-size: 14px;
-    line-height: 19px;
-    align-items: center;
-    color: #9D9B9F;
+.bookmark-card-bottom-text {
+  text-align: left;
+  padding-right: 80px;
+  padding-left: 25px;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 19px;
+  align-items: center;
+  color: #9d9b9f;
 }
-.heartcardleft{
-    position: absolute;
-    margin-left: 210px;
-    margin-top: 40px;
-    background-color: white;
-    color: gray;
-    padding: 10px;
-    border-radius: 100px;
+.heartcardleft {
+  position: absolute;
+  margin-left: 210px;
+  margin-top: 40px;
+  background-color: white;
+  color: gray;
+  padding: 10px;
+  border-radius: 100px;
 }

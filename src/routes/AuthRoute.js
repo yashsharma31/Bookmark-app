@@ -1,26 +1,22 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Navigate} from "react-router-dom";
+import { Navigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { getDataFromLocalStorage } from "../services/LocalStorage";
 
-const AuthRoute = ({
-  Element,
-  type
-}) => {
-  const token = getDataFromLocalStorage({ key: '@authToken' });
+const AuthRoute = ({ Element, type }) => {
+  const token = getDataFromLocalStorage({ key: "@authToken" });
   //console.log("here is token",token)
-  const isAuthUser = useSelector((state)=> state.loginReducers.isAuthUser);
+  const isAuthUser = useSelector((state) => state.loginReducers.isAuthUser);
   //console.log("isAuthUser",isAuthUser)
-  if (type === "guest" && token!= null)return <Navigate to="/bookmarkpage"  />; 
-  else if (type === "private" && token==null) return <Navigate to="/" />;
+  if (type === "guest" && token != null) return <Navigate to="/bookmarkpage" />;
+  else if (type === "private" && token == null) return <Navigate to="/" />;
   //console.log(Element)
-  return <Element/>;
+  return <Element />;
 };
 
 const mapStateToProps = ({ isAuthUser }) => ({
-  isAuthUser
+  isAuthUser,
 });
 
 export default connect(mapStateToProps)(AuthRoute);
-

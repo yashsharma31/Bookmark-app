@@ -1,9 +1,5 @@
 import { styled } from "@mui/material/styles";
-import {
-  Button,
-  TextField,
-  Typography,
-} from "@mui/material";
+import { Button, TextField, Typography } from "@mui/material";
 import Switch from "@mui/material/Switch";
 export const MaterialUISwitch = styled(Switch)(({ theme }) => ({
   width: 62,

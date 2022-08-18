@@ -1,0 +1,14 @@
+.container-outer {
+  display: block;
+  background-color: white;
+  height: 50px;
+  width: 220px;
+  margin-bottom: 10px;
+  border-radius: 20px;
+}
+.container-inner {
+  display: grid;
+  grid-template-columns: 10% 15% 55% 20%;
+  height: 100%;
+  align-items: center;
+}
