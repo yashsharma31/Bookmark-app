@@ -16,6 +16,9 @@ const initialState = {
   getMeReducers: {
     userData: [],
   },
+  logoutReducers: {
+    status: ""
+  },
 };
 
 export default initialState;

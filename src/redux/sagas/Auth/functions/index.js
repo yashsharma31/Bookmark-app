@@ -3,6 +3,7 @@ import {
   registerUserService,
   loginUserService,
   getmeService,
+  logoutService
 } from "../../../../services/AuthRequests/index";
 import * as types from "../../../../constants/index";
 export function* registerSaga(payload) {
@@ -28,5 +29,14 @@ export function* getmeServiceSaga() {
     yield put({ type: types.GETME_USER_SUCCESS, response });
   } catch (error) {
     yield put({ type: types.GETME_USER_ERROR, error });
+  }
+}
+
+export function* logoutServiceSaga() {
+  try {
+    const response = yield call(logoutService);
+    yield put({ type: types.LOGOUT_USER_SUCCESS, response });
+  } catch (error) {
+    yield put({ type: types.LOGOUT_USER_ERROR, error });
   }
 }

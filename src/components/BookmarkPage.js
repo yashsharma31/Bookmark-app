@@ -50,8 +50,6 @@ function BookmarkPage() {
     dispatch(bookmarkAction.readBookmark());
     dispatch(authAction.getMeAction());
     dispatch(folderaction.readFolder());
-
-    //console.log("here it is",baseFolders)
   }, []);
 
   const switchHandler = (event) => {

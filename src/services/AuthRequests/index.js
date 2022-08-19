@@ -65,6 +65,14 @@ export const getmeService = async () => {
   const resp = await axios(config);
   return resp.data;
 };
-export const logoutRequest = async () => {
-  removeDataFromLocalStorage({ key: "@authToken" });
+export const logoutService = async () => {
+  console.log("deleting auth");
+  try{
+    removeDataFromLocalStorage();
+    return true;
+  }
+  catch(err){
+    console.log(err);
+    return false;
+  }
 };
