@@ -18,6 +18,7 @@ import {
   LeftSideButtons,
 } from "./Individual_comp/C_BookmarkPage";
 import "../style/bookmarkpage.css";
+import CreateFolder from "./CreateFolder";
 import quicklinkvr from "../assets/quicklink.png";
 import bookmarklogo from "../assets/bookmarklogo.png";
 import profile_img from "../assets/profile_img.png";
@@ -31,6 +32,7 @@ import { useSelector } from "react-redux/es/exports";
 import { useState } from "react";
 import { useDispatch } from "react-redux/es/exports";
 import * as authAction from "../redux/actions/Auth";
+import { useGetBookmark } from "../redux/hooks/BookmarkHooks";
 import * as bookmarkAction from "../redux/actions/Bookmarks";
 import * as folderaction from "../redux/actions/Folders";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
@@ -43,6 +45,9 @@ function BookmarkPage() {
   const baseBookmarks = useSelector(
     (state) => state.bookmarkReducers.bookmarks
   );
+  const loadingCreateBookmark = useSelector(
+    (state) => state.bookmarkReducers.createBookmark
+  );
 
   const baseFolders = useSelector((state) => state.folderReducers.folders);
 
@@ -52,8 +57,17 @@ function BookmarkPage() {
     dispatch(folderaction.readFolder());
   }, []);
 
+  const [getBookmark] = useGetBookmark();
+  useEffect(() => {
+    getBookmark();
+  }, [loadingCreateBookmark]);
+
   const switchHandler = (event) => {
     setChecked(event.target.checked);
+  };
+
+  const getFolderById = (folderId) => {
+    dispatch(folderaction.readFolder(folderId));
   };
 
   const onHandleurlsubmit = (event) => {
@@ -62,7 +76,6 @@ function BookmarkPage() {
 
     const data = {
       url,
-      name: "bennett222",
     };
     console.log(data);
     dispatch(bookmarkAction.createBookmark(data));
@@ -99,7 +112,11 @@ function BookmarkPage() {
             ) : (
               <>
                 {baseFolders.map((ele) => (
-                  <BookmarkFolder key={ele.id} folder_name={ele.name} />
+                  <BookmarkFolder
+                    key={ele.id}
+                    folder_name={ele.name}
+                    folderId={ele.id}
+                  />
                 ))}
               </>
             )}

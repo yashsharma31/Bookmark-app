@@ -5,7 +5,9 @@ import MoreVertIcon from "@mui/icons-material/MoreVert";
 import placeholderimg from "../assets/placeholderimg.jpg";
 
 function Bookmark_card(props) {
-  const MAX_LENGTH = 60;
+  const MAX_LENGTH = 70;
+  const MAX_LENGTH_HEADING = 20;
+  console.log(props)
   //console.log(props.bookmark_name)
   const checkForImage = (imgg) => {
     if (imgg == "") {
@@ -29,7 +31,10 @@ function Bookmark_card(props) {
         )}
       </div>
       <div className="middle-text-card">
-        <Typography variant="h6">{props.bookmark_name}</Typography>
+        <Typography variant="h6">{`${props.bookmark_name.substring(
+          0,
+          MAX_LENGTH_HEADING
+        )}...`}</Typography>
         <IconButton aria-label="moreVertical">
           <MoreVertIcon />
         </IconButton>

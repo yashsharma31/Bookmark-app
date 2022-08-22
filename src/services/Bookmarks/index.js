@@ -3,7 +3,6 @@ const axios = require("axios");
 export const createBookmark = async (props) => {
   const data = JSON.stringify({
     url: props.url,
-    name: props.name,
   });
   console.log("here is createbookmark", data);
   const temp_config = {
@@ -12,7 +11,8 @@ export const createBookmark = async (props) => {
     data: data,
   };
   const config = setHeaders(temp_config);
-  return await axios(config);
+  const responsedata = await axios(config)
+  return responsedata.data;
 };
 export const DeleteBookmark = async (props) => {
   const data = JSON.stringify({
@@ -30,11 +30,13 @@ export const getBookmark = async (props) => {
   const data = "";
   const temp_config = {
     method: "GET",
-    url: `${process.env.REACT_APP_URL}/folder-bookmarks?"folderId"="${props.folderId}"`,
+    url: `${process.env.REACT_APP_URL}/folder-bookmarks?folderId=${props.folderId}`,
     data: data,
   };
+  console.log("folderid",props.folderId)
   const config = setOnlyAuth(temp_config);
-  return await axios(config);
+  const bookmarks = await axios(config);
+  return bookmarks.data
 };
 export const getbaseBookmark = async () => {
   const data = "";

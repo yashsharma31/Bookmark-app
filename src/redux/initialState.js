@@ -7,6 +7,7 @@ const initialState = {
   },
   bookmarkReducers: {
     bookmarks: [],
+    createBookmark: "",
     error: "",
   },
   folderReducers: {

@@ -19,7 +19,7 @@ export function* CreateBookmarkWatcherFunction(action) {
       url: action.payload.url,
     });
     console.log("response=", response);
-    yield put({ type: types.CREATE_BOOKMARK_SUCCESS, payload: action.payload });
+    yield put({ type: types.CREATE_BOOKMARK_SUCCESS, payload: action.payload,response:response });
   } catch (e) {
     yield put({ type: types.CREATE_BOOKMARK_ERROR });
   }
@@ -38,12 +38,12 @@ export function* DeleteBookmarkWatcherFunction(action) {
 }
 export function* GetBookmarkWatcherFunction(action) {
   try {
-    console.log("action", action.payload);
+    //console.log("action",action.payload);
     var response;
     if (typeof action.payload === "undefined") {
       response = yield call(getbaseBookmark);
     } else {
-      response = yield call(getBookmark, { folderId: action.payload.folderId });
+      response = yield call(getBookmark, { folderId: action.payload});
     }
     console.log("response", response);
     yield put({ type: types.READ_BOOKMARK_SUCCESS, response });

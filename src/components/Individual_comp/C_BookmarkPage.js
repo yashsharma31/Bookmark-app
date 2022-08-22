@@ -1,6 +1,7 @@
 import { styled } from "@mui/material/styles";
 import { Button, TextField, Typography } from "@mui/material";
 import Switch from "@mui/material/Switch";
+import { LoadingButton } from "@mui/lab";
 export const MaterialUISwitch = styled(Switch)(({ theme }) => ({
   width: 62,
   height: 34,
@@ -64,7 +65,7 @@ export const MyTextfield = styled(TextField)({
   height: "50px",
   color: "white",
 });
-export const MyButton = styled(Button)({
+export const MyButton = styled(LoadingButton)({
   borderRadius: "15px",
   marginTop: "10px",
   height: "50px",
