@@ -8,8 +8,9 @@ export const createBookmark = (bookmark) => {
 };
 
 export const readBookmark = (bookmark) => {
+  console.log(bookmark)
   return {
-    type: types.READ_BOOKMARK,
+    type: types.READ_BOOKMARK_LOADING,
     payload: bookmark,
   };
 };

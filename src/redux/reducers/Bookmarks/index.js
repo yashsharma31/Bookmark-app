@@ -4,15 +4,20 @@ import initialState from "../../initialState";
 const bookmarkReducers = (state = initialState.bookmarkReducers, action) => {
   switch (action.type) {
     case types.CREATE_BOOKMARK:
-      return { ...state,createBookmark: "Creating" };
+      return { ...state, createBookmark: "Creating" };
     case types.CREATE_BOOKMARK_SUCCESS:
       console.log("creating success", action.response);
       var allBookmarks = state.bookmarks;
       allBookmarks.push(action.response);
-      return { ...state,error: "", createBookmark: "Done" ,bookmarks:allBookmarks};
+      return {
+        ...state,
+        error: "",
+        createBookmark: "Done",
+        bookmarks: allBookmarks,
+      };
     case types.CREATE_BOOKMARK_ERROR:
       console.log("user redux creating fail");
-      return { ...state,createBookmark: "Failed" };
+      return { ...state, createBookmark: "Failed" };
     case types.DELETE_BOOKMARK_SUCCESS:
       console.log("user redux delete success");
       return { error: "", bookmarks: Object.assign({}, action.payload) };
@@ -22,16 +27,37 @@ const bookmarkReducers = (state = initialState.bookmarkReducers, action) => {
         error: "failed to delete bookmark",
       });
     case types.READ_BOOKMARK_LOADING:
-      return { ...state,error: "", bookmarks: "Loading" };
+      var currentFolderId, currentFolderName;
+      console.log("REad_book", action.payload);
+      if (typeof action.payload == "undefined") {
+        currentFolderId = "Root";
+        currentFolderName = "Root";
+      } else {
+        currentFolderId = action.payload.folderId;
+        currentFolderName = action.payload.folderName;
+      }
+      return {
+        ...state,
+        error: "",
+        status: "Loading",
+        foldersId: currentFolderId,
+        folderName: currentFolderName,
+      };
     case types.READ_BOOKMARK_SUCCESS:
       console.log("response:", action);
       console.log("user redux.READ  success");
-      return { ...state,error: "", bookmarks: action.response};
+      return {
+        ...state,
+        error: "",
+        status: "Sucess",
+        bookmarks: action.response,
+      };
     case types.READ_BOOKMARK_ERROR:
       console.log("user redux .READ fail");
       return Object.assign(Object.assign({}, state), {
         ...state,
         error: "failed to read bookmarks",
+        status: "Failed",
       });
     case types.PATCH_BOOKMARK_SUCCESS:
       console.log("user redux.PATCH  success");

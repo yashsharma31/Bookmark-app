@@ -1,14 +1,43 @@
 .container-outer {
-  display: block;
+  display: flex;
+  flex-direction: column;
   background-color: white;
-  height: 50px;
   width: 220px;
   margin-bottom: 10px;
   border-radius: 20px;
 }
 .container-inner {
   display: grid;
-  grid-template-columns: 10% 15% 55% 20%;
+  padding: 5px;
+  grid-template-columns: 10% 70% 20%;
   height: 100%;
   align-items: center;
+}
+.inner-container-folders{
+  padding-left: 30px;
+}
+.inner-container-folders-empty{
+  display: flex;
+  margin: auto;
+  align-items: center;
+  justify-content: left;
+  padding-left: 40px;
+}
+.clickable-folder{
+  display: grid;
+  grid-template-columns: 20% 80%;
+  align-items: center;
+}
+.clickable-folder:hover{
+  cursor: pointer;
+}
+.container-inner-not{
+  display: grid;
+  grid-template-columns: 10% 70% 20%;
+  height: 100%;
+  padding: 5px;
+  border-radius: 15px;
+  align-items: center;
+  background-color: #E4E3FF;
+  
 }

@@ -11,8 +11,11 @@ const initialState = {
     error: "",
   },
   folderReducers: {
-    folders: [],
+    folders: {},
+    rootIds: [],
     error: "",
+    isLoading: false,
+    isOpen: {}
   },
   getMeReducers: {
     userData: [],

@@ -3,10 +3,13 @@ import { call, put } from "redux-saga/effects";
 import {
   createFolder,
   DeleteFolder,
+  getbaseBookmark,
   getbaseFolder,
+  getBookmark,
   getFolder,
   renameFolder,
 } from "../../../../services";
+import { type } from "@testing-library/user-event/dist/type";
 export function* CreateFolderWatcherFunction(action) {
   try {
     console.log(action);
@@ -34,17 +37,41 @@ export function* DeleteFolderWatcherFunction(action) {
 }
 export function* GetFolderWatcherFunction(action) {
   try {
-    var response;
-    if (typeof action.payload === "undefined") {
-      response = yield call(getbaseFolder);
-    } else {
-      //console.log(action);
-      response = yield call(getFolder, { folderId: action.payload.folderId });
-    }
-    //console.log(response);
-    yield put({ type: types.READ_FOLDER_SUCCESS, response });
+    var responseFolder;
+    const rootIds = [];
+    const folders = {};
+    responseFolder = yield call(getbaseFolder);
+    responseFolder.forEach((element) => {
+      const id = element.id;
+      rootIds.push(id);
+      folders[id] = element;
+    });
+    //responseBookmark = yield call(getbaseBookmark)
+    yield put({
+      type: types.READ_FOLDER_SUCCESS,
+      payload: { folders, rootIds },
+    });
   } catch (e) {
     yield put({ type: types.READ_FOLDER_ERROR });
+  }
+}
+export function* GetChildrenWatcherFunction(action) {
+  try {
+    var response = yield call(getFolder, { folderId: action.payload });
+    const childFolders = {};
+    const childFolderIds = [];
+    response.children.forEach((element) => {
+      const id = element.id;
+      childFolderIds.push(id);
+      childFolders[id] = element;
+    });
+    yield put({
+      type: types.READ_CURRENT_FOLDER_SUCCESS,
+      payload: { parentId: action.payload, childFolders, childFolderIds },
+    });
+  } catch (error) {
+    console.log(error)
+    yield put({ type: types.READ_CURRENT_FOLDER_ERROR, payload: error });
   }
 }
 export function* RenameFolderWatcherFunction(action) {

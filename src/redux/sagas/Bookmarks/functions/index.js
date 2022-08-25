@@ -15,7 +15,7 @@ export function* CreateBookmarkWatcherFunction(action) {
     console.log("parameters-name", action.payload.name);
     console.log("parameters-url", action.payload.url);
     const response = yield call(createBookmark, {
-      name: action.payload.name,
+      folderId: action.payload.folderId,
       url: action.payload.url,
     });
     console.log("response=", response);
@@ -43,7 +43,7 @@ export function* GetBookmarkWatcherFunction(action) {
     if (typeof action.payload === "undefined") {
       response = yield call(getbaseBookmark);
     } else {
-      response = yield call(getBookmark, { folderId: action.payload});
+      response = yield call(getBookmark, { payload: action.payload});
     }
     console.log("response", response);
     yield put({ type: types.READ_BOOKMARK_SUCCESS, response });

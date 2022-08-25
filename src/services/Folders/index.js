@@ -29,7 +29,7 @@ export const getFolder = async (props) => {
   const data = "";
   const temp_config = {
     method: "GET",
-    url: `${process.env.REACT_APP_URL}/folders?"folderId"="${props.folderId}"`,
+    url: `${process.env.REACT_APP_URL}/folder?folderId=${props.folderId}`,
     data: data,
   };
   const config = setOnlyAuth(temp_config);

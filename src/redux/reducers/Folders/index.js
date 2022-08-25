@@ -20,15 +20,46 @@ const folderReducers = (state = initialState.folderReducers, action) => {
         error: "failed to delete folder",
       });
     case types.READ_FOLDER:
-      return { error: "", folders: "Loading" };
+      return {
+        ...state,
+        isLoading: true,
+      };
     case types.READ_FOLDER_SUCCESS:
       //console.log("user redux.READ  success",action);
-      return { error: "", folders: action.response };
+      return {
+        ...state,
+        error: "",
+        ...action.payload,
+        isLoading: false,
+      };
     case types.READ_FOLDER_ERROR:
       console.log("user redux .READ fail");
-      return Object.assign(Object.assign({}, state), {
+      return {
+        ...state,
         error: "failed to read folders",
-      });
+        isLoading: false,
+      };
+    case types.READ_CURRENT_FOLDER:
+      return {
+        ...state,
+        isLoadingChildren: action.payload,
+        parentId: action.payload,
+      };
+    case types.READ_CURRENT_FOLDER_SUCCESS:
+      //console.log("user redux.READ  success",action);
+      const UpdatedFolders = {
+        ...state.folders,
+        ...action.payload.childFolders,
+      };
+      UpdatedFolders[action.payload.parentId] = {
+        ...UpdatedFolders[action.payload.parentId],
+        childrenIds: action.payload.childFolderIds,
+      };
+      return { ...state, isLoadingChildren: false, folders: UpdatedFolders };
+    case types.READ_CURRENT_FOLDER_ERROR:
+      console.log("user redux .READ fail");
+      return { ...state, error: "failed to read folder children", isLoadingChildren: false };
+      
     case types.UPDATE_FOLDER_SUCCESS:
       console.log("user redux.UPDATE  success");
       return { error: "", folders: Object.assign({}, action.payload) };

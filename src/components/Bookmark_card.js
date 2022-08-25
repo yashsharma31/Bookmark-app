@@ -7,8 +7,6 @@ import placeholderimg from "../assets/placeholderimg.jpg";
 function Bookmark_card(props) {
   const MAX_LENGTH = 70;
   const MAX_LENGTH_HEADING = 20;
-  console.log(props)
-  //console.log(props.bookmark_name)
   const checkForImage = (imgg) => {
     if (imgg == "") {
       return true;

@@ -18,7 +18,6 @@ import {
   LeftSideButtons,
 } from "./Individual_comp/C_BookmarkPage";
 import "../style/bookmarkpage.css";
-import CreateFolder from "./CreateFolder";
 import quicklinkvr from "../assets/quicklink.png";
 import bookmarklogo from "../assets/bookmarklogo.png";
 import profile_img from "../assets/profile_img.png";
@@ -45,29 +44,37 @@ function BookmarkPage() {
   const baseBookmarks = useSelector(
     (state) => state.bookmarkReducers.bookmarks
   );
+  const bookmarksLoadingState = useSelector(
+    (state) => state.bookmarkReducers.status
+  );
+  const currentFolderName = useSelector(
+    (state) => state.bookmarkReducers.folderName
+  );
+  const currentFolderId = useSelector(
+    (state) => state.bookmarkReducers.foldersId
+  );
+  const folders = useSelector((state) => state.folderReducers.folders);
+  const rootIds = useSelector((state) => state.folderReducers.rootIds);
   const loadingCreateBookmark = useSelector(
     (state) => state.bookmarkReducers.createBookmark
   );
-
-  const baseFolders = useSelector((state) => state.folderReducers.folders);
 
   useEffect(() => {
     dispatch(bookmarkAction.readBookmark());
     dispatch(authAction.getMeAction());
     dispatch(folderaction.readFolder());
+    console.log("folder", folders);
+    console.log("rootids", rootIds);
   }, []);
 
   const [getBookmark] = useGetBookmark();
   useEffect(() => {
     getBookmark();
-  }, [loadingCreateBookmark]);
+    console.log("gg");
+  }, [loadingCreateBookmark == "Done"]);
 
   const switchHandler = (event) => {
     setChecked(event.target.checked);
-  };
-
-  const getFolderById = (folderId) => {
-    dispatch(folderaction.readFolder(folderId));
   };
 
   const onHandleurlsubmit = (event) => {
@@ -76,9 +83,11 @@ function BookmarkPage() {
 
     const data = {
       url,
+      folderId: currentFolderId,
     };
     console.log(data);
     dispatch(bookmarkAction.createBookmark(data));
+    //event.target.url = ""
   };
   const handleLogout = () => {
     dispatch(authAction.logoutAction());
@@ -105,21 +114,17 @@ function BookmarkPage() {
             />
           </div>
           <div className="folder-container">
-            {baseFolders == "Loading" ? (
-              <div className="loading_bookmarks">
-                <CircularProgress />
-              </div>
-            ) : (
-              <>
-                {baseFolders.map((ele) => (
-                  <BookmarkFolder
-                    key={ele.id}
-                    folder_name={ele.name}
-                    folderId={ele.id}
-                  />
-                ))}
-              </>
-            )}
+            <div>
+              {rootIds.length === 0 ? (
+                <div className="loading_bookmarks">
+                  <CircularProgress />
+                </div>
+              ) : (
+                rootIds.map((id) => {
+                  return <BookmarkFolder key={id} folder={folders[id]} />;
+                })
+              )}
+            </div>
           </div>
           <div className="favourite_button">
             <LeftSideButtons fullWidth startIcon={<FavoriteIcon />}>
@@ -171,9 +176,14 @@ function BookmarkPage() {
                   <MyTypographyInner variant="h6">FOLDER</MyTypographyInner>
                   <div className="folder-buttons">
                     <My2ndButton type="submit" variant="Filled" size="large">
-                      Root
+                      {currentFolderName}
                     </My2ndButton>
-                    <MyButton type="submit" variant="contained" size="large">
+                    <MyButton
+                      loading={loadingCreateBookmark == "Creating"}
+                      type="submit"
+                      variant="contained"
+                      size="large"
+                    >
                       Save
                     </MyButton>
                   </div>
@@ -207,36 +217,44 @@ function BookmarkPage() {
               }
             />
           </div>
-          {baseBookmarks.length == 0 ? (
+          {bookmarksLoadingState == "Loading" ? (
             <div className="loading_bookmarks">
               <CircularProgress />
             </div>
           ) : (
-            <div
-              className={
-                !checked
-                  ? "bookmark-cards-bottom"
-                  : "bookmark-cards-bottom-tiled"
-              }
-            >
-              {!checked
-                ? baseBookmarks.map((ele) => (
-                    <Bookmark_card
-                      key={ele.id}
-                      bookmark_name={ele.name}
-                      bookmark_des={ele.description}
-                      bookmark_img={ele.imageUrl}
-                    />
-                  ))
-                : baseBookmarks.map((ele) => (
-                    <Bookmark_card_table
-                      key={ele.id}
-                      bookmark_name={ele.name}
-                      bookmark_des={ele.description}
-                      bookmark_img={ele.imageUrl}
-                    />
-                  ))}
-            </div>
+            <>
+              {baseBookmarks.length == 0 ? (
+                <div className="loading_bookmarks">
+                  <Typography>No Bookmarks</Typography>
+                </div>
+              ) : (
+                <div
+                  className={
+                    !checked
+                      ? "bookmark-cards-bottom"
+                      : "bookmark-cards-bottom-tiled"
+                  }
+                >
+                  {!checked
+                    ? baseBookmarks.map((ele) => (
+                        <Bookmark_card
+                          key={ele.id}
+                          bookmark_name={ele.name}
+                          bookmark_des={ele.description}
+                          bookmark_img={ele.imageUrl}
+                        />
+                      ))
+                    : baseBookmarks.map((ele) => (
+                        <Bookmark_card_table
+                          key={ele.id}
+                          bookmark_name={ele.name}
+                          bookmark_des={ele.description}
+                          bookmark_img={ele.imageUrl}
+                        />
+                      ))}
+                </div>
+              )}
+            </>
           )}
         </div>
       </div>

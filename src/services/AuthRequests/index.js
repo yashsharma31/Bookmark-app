@@ -37,7 +37,7 @@ export const loginUserService = async (props) => {
     email: props.user.email,
     password: props.user.password,
   });
-  //console.log("this is",data)
+  console.log("this is",data)
   const temp_config = {
     method: "POST",
     url: `${process.env.REACT_APP_URL}/login`,

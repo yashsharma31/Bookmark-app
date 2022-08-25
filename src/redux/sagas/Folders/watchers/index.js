@@ -1,9 +1,10 @@
 import * as types from "../../../../constants";
 
-import { all, takeLatest, fork } from "redux-saga/effects";
+import { all, takeLatest,takeEvery,fork } from "redux-saga/effects";
 import {
   CreateFolderWatcherFunction,
   DeleteFolderWatcherFunction,
+  GetChildrenWatcherFunction,
   GetFolderWatcherFunction,
   RenameFolderWatcherFunction,
 } from "../functions";
@@ -18,7 +19,10 @@ function* RenameFolderWatcher() {
   yield takeLatest(types.UPDATE_FOLDER, RenameFolderWatcherFunction);
 }
 function* GetFolderWatcher() {
-  yield takeLatest(types.READ_FOLDER, GetFolderWatcherFunction);
+  yield takeEvery(types.READ_FOLDER, GetFolderWatcherFunction);
+}
+function* GetChildrenWatcher() {
+  yield takeEvery(types.READ_CURRENT_FOLDER, GetChildrenWatcherFunction);
 }
 
 export default function* folderSagas() {
@@ -27,5 +31,6 @@ export default function* folderSagas() {
     fork(DeleteFolderWatcher),
     fork(GetFolderWatcher),
     fork(RenameFolderWatcher),
+    fork(GetChildrenWatcher)
   ]);
 }

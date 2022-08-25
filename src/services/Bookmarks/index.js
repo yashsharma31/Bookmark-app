@@ -4,15 +4,25 @@ export const createBookmark = async (props) => {
   const data = JSON.stringify({
     url: props.url,
   });
-  console.log("here is createbookmark", data);
+  console.log(props.folderId == "Root");
+  console.log(
+    "here is createbookmark",
+    `${process.env.REACT_APP_URL}/bookmark?folderId=${(props.folderId, "Root")}`
+  );
   const temp_config = {
     method: "post",
-    url: `${process.env.REACT_APP_URL}/bookmark`,
+    url:
+      props.folderId != "Root"
+        ? `${process.env.REACT_APP_URL}/bookmark?folderId=${props.folderId}`
+        : `${process.env.REACT_APP_URL}/bookmark`,
     data: data,
   };
+
   const config = setHeaders(temp_config);
-  const responsedata = await axios(config)
-  return responsedata.data;
+
+  const bookmarks = await axios(config);
+  console.log(bookmarks);
+  return bookmarks.data;
 };
 export const DeleteBookmark = async (props) => {
   const data = JSON.stringify({
@@ -27,16 +37,17 @@ export const DeleteBookmark = async (props) => {
   return await axios(config);
 };
 export const getBookmark = async (props) => {
+  console.log("props", props);
   const data = "";
   const temp_config = {
     method: "GET",
-    url: `${process.env.REACT_APP_URL}/folder-bookmarks?folderId=${props.folderId}`,
+    url: `${process.env.REACT_APP_URL}/folder-bookmarks?folderId=${props.payload.folderId}`,
     data: data,
   };
-  console.log("folderid",props.folderId)
+  console.log("folderidinbookmarks", props.payload.folderId);
   const config = setOnlyAuth(temp_config);
   const bookmarks = await axios(config);
-  return bookmarks.data
+  return bookmarks.data;
 };
 export const getbaseBookmark = async () => {
   const data = "";

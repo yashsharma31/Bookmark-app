@@ -12,6 +12,12 @@ export const readFolder = () => {
     type: types.READ_FOLDER,
   };
 };
+export const readChildrenFolder = (folderid) => {
+  return {
+    type: types.READ_CURRENT_FOLDER,
+    payload: folderid
+  };
+};
 export const deleteFolder = (folder) => {
   return {
     type: types.DELETE_FOLDER,

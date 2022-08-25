@@ -15,7 +15,7 @@ function* DeleteBookmarkWatcher() {
   yield takeLatest(types.DELETE_BOOKMARK, DeleteBookmarkWatcherFunction);
 }
 function* GetBookmarkWatcher() {
-  yield takeLatest(types.READ_BOOKMARK, GetBookmarkWatcherFunction);
+  yield takeLatest(types.READ_BOOKMARK_LOADING, GetBookmarkWatcherFunction);
 }
 function* PatchBookmarkWatcher() {
   yield takeLatest(types.PATCH_BOOKMARK, patchBookmarkWatcherFunction);
