@@ -55,14 +55,12 @@ function BookmarkPage() {
   );
 
   useEffect(() => {
-    dispatch(bookmarkAction.readBookmark());
     dispatch(authAction.getMeAction());
     dispatch(folderaction.readFolder());
   }, []);
 
-  const [getBookmark] = useGetBookmark();
   useEffect(() => {
-    getBookmark();
+    dispatch(bookmarkAction.readBookmark());
   }, [loadingCreateBookmark == "Done"]);
 
   const switchHandler = (event) => {
@@ -77,7 +75,7 @@ function BookmarkPage() {
       url,
       folderId: currentFolderId,
     };
-    console.log(data);
+    //console.log(data);
     dispatch(bookmarkAction.createBookmark(data));
   };
   const handleLogout = () => {

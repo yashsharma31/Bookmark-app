@@ -12,7 +12,7 @@ import FolderOpenIcon from "@mui/icons-material/FolderOpen";
 import AddFolder from "./AddFolder";
 import * as selectorFunction from "./useSelector";
 
-export default function BookmarkFolder(props, inner = false) {
+export default function BookmarkFolder(props) {
   const childrenData = {
     createdAt: props.folder.createdAt,
     name: props.folder.name,
@@ -21,7 +21,6 @@ export default function BookmarkFolder(props, inner = false) {
     bookmarkIds: props.folder.bookmarkIds,
   };
   const currentFolderId = useSelector(selectorFunction.currentFolderId);
-  console.log(childrenData);
   const childrenValues = useSelector(selectorFunction.folders);
   const dispatch = useDispatch();
   const handleCurrentFolder = (folderId) => {

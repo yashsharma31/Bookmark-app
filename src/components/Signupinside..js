@@ -29,7 +29,7 @@ import KeyboardArrowLeftRoundedIcon from "@mui/icons-material/KeyboardArrowLeftR
 const theme = createTheme();
 
 export default function Signupinside() {
-  const initStage = useSelector(initStage);
+  const initialStage = useSelector(initStage);
   const dispatch = useDispatch();
 
   return (
@@ -56,7 +56,6 @@ export default function Signupinside() {
                 props.setSubmitting(true);
                 console.log("Logging in", values);
                 dispatch(loginUserAction(values));
-                dispatch(loginUserLoadingAction());
                 props.resetForm();
               }}
               validationSchema={Yup.object().shape({
@@ -105,7 +104,7 @@ export default function Signupinside() {
                       type="submit"
                       fullWidth
                       loading={
-                        props.isSubmitting || initStage == "Loading"
+                        props.isSubmitting || initialStage == "Loading"
                           ? true
                           : false
                       }

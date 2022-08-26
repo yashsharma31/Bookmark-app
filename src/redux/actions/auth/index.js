@@ -9,13 +9,8 @@ export const registerUserAction = (user) => {
 
 export const loginUserAction = (user) => {
   return {
-    type: types.LOGIN_USER,
-    user,
-  };
-};
-export const loginUserLoadingAction = () => {
-  return {
     type: types.LOGIN_USER_LOADING,
+    user,
   };
 };
 export const getMeAction = () => {
