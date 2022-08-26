@@ -11,8 +11,10 @@ import { useSelector } from "react-redux/es/exports";
 import FolderOpenIcon from "@mui/icons-material/FolderOpen";
 import AddFolder from "./AddFolder";
 import * as selectorFunction from "./useSelector";
+import { useNavigate } from 'react-router-dom';
 
 export default function BookmarkFolder(props) {
+  const navigate = useNavigate();
   const childrenData = {
     createdAt: props.folder.createdAt,
     name: props.folder.name,
@@ -37,6 +39,7 @@ export default function BookmarkFolder(props) {
       folderId: childrenData.id,
       folderName: childrenData.name,
     };
+    navigate(`${childrenData.id}`);
     dispatch(bookmarkAction.readBookmark(data));
   };
 

@@ -37,6 +37,8 @@ import * as bookmarkAction from "../redux/actions/Bookmarks";
 import * as folderaction from "../redux/actions/Folders";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import BookmarkFolder from "./BookmarkFolder";
+import { useParams } from "react-router-dom";
+import { type } from "@testing-library/user-event/dist/type";
 
 function BookmarkPage() {
   const [checked, setChecked] = useState(false);
@@ -46,6 +48,7 @@ function BookmarkPage() {
   const bookmarksLoadingState = useSelector(
     selectorFunction.bookmarksLoadingState
   );
+  const { id } = useParams();
   const currentFolderName = useSelector(selectorFunction.currentFolderName);
   const currentFolderId = useSelector(selectorFunction.currentFolderId);
   const folders = useSelector(selectorFunction.folders);
@@ -53,14 +56,30 @@ function BookmarkPage() {
   const loadingCreateBookmark = useSelector(
     selectorFunction.loadingCreateBookmark
   );
+  const checkIfExist = (id) => {
+    console.log(id);
+    //folders.map((ele)=>console.log(ele))
+  };
 
   useEffect(() => {
+    checkIfExist(id);
     dispatch(authAction.getMeAction());
     dispatch(folderaction.readFolder());
+    if (typeof id != "undefined") {
+    }
   }, []);
 
   useEffect(() => {
-    dispatch(bookmarkAction.readBookmark());
+    if (typeof id != "undefined") {
+      console.log("url id", id);
+      const data = {
+        folderId: id,
+        folderName: "New Folder 1",
+      };
+      dispatch(bookmarkAction.readBookmark(data));
+    } else {
+      dispatch(bookmarkAction.readBookmark());
+    }
   }, [loadingCreateBookmark == "Done"]);
 
   const switchHandler = (event) => {

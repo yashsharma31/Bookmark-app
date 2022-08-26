@@ -17,7 +17,14 @@ function App() {
               Element={BookmarkPage}
             />
           }
-        />
+        >
+        <Route path=":id" element={<AuthRoute
+              path="/bookmarkpage"
+              type="private"
+              Element={BookmarkPage}
+            />} />
+        </Route>
+
         <Route
           path="/signin"
           element={
