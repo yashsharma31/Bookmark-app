@@ -1,6 +1,6 @@
 import * as types from "../../../../constants";
 
-import { all, takeLatest,takeEvery,fork } from "redux-saga/effects";
+import { all, takeLatest, takeEvery, fork } from "redux-saga/effects";
 import {
   CreateFolderWatcherFunction,
   DeleteFolderWatcherFunction,
@@ -31,6 +31,6 @@ export default function* folderSagas() {
     fork(DeleteFolderWatcher),
     fork(GetFolderWatcher),
     fork(RenameFolderWatcher),
-    fork(GetChildrenWatcher)
+    fork(GetChildrenWatcher),
   ]);
 }

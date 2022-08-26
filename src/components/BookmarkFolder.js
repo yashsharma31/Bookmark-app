@@ -10,6 +10,7 @@ import * as folderAction from "../redux/actions/Folders";
 import { useSelector } from "react-redux/es/exports";
 import FolderOpenIcon from "@mui/icons-material/FolderOpen";
 import AddFolder from "./AddFolder";
+import * as selectorFunction from "./useSelector";
 
 export default function BookmarkFolder(props, inner = false) {
   const childrenData = {
@@ -19,17 +20,15 @@ export default function BookmarkFolder(props, inner = false) {
     childrenIds: props.folder.childrenIds,
     bookmarkIds: props.folder.bookmarkIds,
   };
-  const currentFolderId = useSelector(
-    (state) => state.bookmarkReducers.foldersId
-  );
+  const currentFolderId = useSelector(selectorFunction.currentFolderId);
   console.log(childrenData);
-  const childrenValues = useSelector((state) => state.folderReducers.folders);
+  const childrenValues = useSelector(selectorFunction.folders);
   const dispatch = useDispatch();
   const handleCurrentFolder = (folderId) => {
     dispatch(folderAction.readChildrenFolder(folderId));
   };
   const { isLoadingChildren, isOpen } = useSelector(
-    (state) => state.folderReducers
+    selectorFunction.folderReducers
   );
   const [rotate, setRotate] = useState(
     isOpen[childrenData.id] !== "undefined" && isOpen[childrenData.id]
@@ -40,7 +39,6 @@ export default function BookmarkFolder(props, inner = false) {
       folderName: childrenData.name,
     };
     dispatch(bookmarkAction.readBookmark(data));
-    //console.log(currentFolderId,childrenData.id)
   };
 
   const toggleRotate = () => {

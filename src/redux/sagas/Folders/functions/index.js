@@ -3,13 +3,10 @@ import { call, put } from "redux-saga/effects";
 import {
   createFolder,
   DeleteFolder,
-  getbaseBookmark,
   getbaseFolder,
-  getBookmark,
   getFolder,
   renameFolder,
 } from "../../../../services";
-import { type } from "@testing-library/user-event/dist/type";
 export function* CreateFolderWatcherFunction(action) {
   try {
     console.log(action);
@@ -70,7 +67,7 @@ export function* GetChildrenWatcherFunction(action) {
       payload: { parentId: action.payload, childFolders, childFolderIds },
     });
   } catch (error) {
-    console.log(error)
+    console.log(error);
     yield put({ type: types.READ_CURRENT_FOLDER_ERROR, payload: error });
   }
 }

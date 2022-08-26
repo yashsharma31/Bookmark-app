@@ -9,9 +9,14 @@
 .container-inner {
   display: grid;
   padding: 5px;
+  margin-top: 5px;
+  border-radius: 15px;
   grid-template-columns: 10% 70% 20%;
   height: 100%;
   align-items: center;
+}
+.container-inner:hover {
+  background-color: #F7F7FF;
 }
 .inner-container-folders{
   padding-left: 30px;
@@ -35,6 +40,7 @@
   display: grid;
   grid-template-columns: 10% 70% 20%;
   height: 100%;
+  margin-top: 5px;
   padding: 5px;
   border-radius: 15px;
   align-items: center;

@@ -23,12 +23,13 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import sly1 from "../assets/Saly-10.png";
 import { IconButton } from "@mui/material";
+import { initStage } from "./useSelector";
 import KeyboardArrowLeftRoundedIcon from "@mui/icons-material/KeyboardArrowLeftRounded";
 
 const theme = createTheme();
 
 export default function Signupinside() {
-  const initStage = useSelector((state) => state.loginReducers.isAuthUser);
+  const initStage = useSelector(initStage);
   const dispatch = useDispatch();
 
   return (

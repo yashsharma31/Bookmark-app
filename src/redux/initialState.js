@@ -15,13 +15,13 @@ const initialState = {
     rootIds: [],
     error: "",
     isLoading: false,
-    isOpen: {}
+    isOpen: {},
   },
   getMeReducers: {
     userData: [],
   },
   logoutReducers: {
-    status: ""
+    status: "",
   },
 };
 

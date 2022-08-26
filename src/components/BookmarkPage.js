@@ -26,6 +26,7 @@ import AddIcon from "@mui/icons-material/Add";
 import LogoutIcon from "@mui/icons-material/Logout";
 import Bookmark_card from "./Bookmark_card";
 import FavoriteIcon from "@mui/icons-material/Favorite";
+import * as selectorFunction from "../components/useSelector";
 import Bookmark_card_table from "./Bookmark_card_table";
 import { useSelector } from "react-redux/es/exports";
 import { useState } from "react";
@@ -40,37 +41,28 @@ import BookmarkFolder from "./BookmarkFolder";
 function BookmarkPage() {
   const [checked, setChecked] = useState(false);
   const dispatch = useDispatch();
-  const userData = useSelector((state) => state.getMeReducers.userData);
-  const baseBookmarks = useSelector(
-    (state) => state.bookmarkReducers.bookmarks
-  );
+  const userData = useSelector(selectorFunction.userData);
+  const baseBookmarks = useSelector(selectorFunction.baseBookmarks);
   const bookmarksLoadingState = useSelector(
-    (state) => state.bookmarkReducers.status
+    selectorFunction.bookmarksLoadingState
   );
-  const currentFolderName = useSelector(
-    (state) => state.bookmarkReducers.folderName
-  );
-  const currentFolderId = useSelector(
-    (state) => state.bookmarkReducers.foldersId
-  );
-  const folders = useSelector((state) => state.folderReducers.folders);
-  const rootIds = useSelector((state) => state.folderReducers.rootIds);
+  const currentFolderName = useSelector(selectorFunction.currentFolderName);
+  const currentFolderId = useSelector(selectorFunction.currentFolderId);
+  const folders = useSelector(selectorFunction.folders);
+  const rootIds = useSelector(selectorFunction.rootIds);
   const loadingCreateBookmark = useSelector(
-    (state) => state.bookmarkReducers.createBookmark
+    selectorFunction.loadingCreateBookmark
   );
 
   useEffect(() => {
     dispatch(bookmarkAction.readBookmark());
     dispatch(authAction.getMeAction());
     dispatch(folderaction.readFolder());
-    console.log("folder", folders);
-    console.log("rootids", rootIds);
   }, []);
 
   const [getBookmark] = useGetBookmark();
   useEffect(() => {
     getBookmark();
-    console.log("gg");
   }, [loadingCreateBookmark == "Done"]);
 
   const switchHandler = (event) => {
@@ -87,7 +79,6 @@ function BookmarkPage() {
     };
     console.log(data);
     dispatch(bookmarkAction.createBookmark(data));
-    //event.target.url = ""
   };
   const handleLogout = () => {
     dispatch(authAction.logoutAction());

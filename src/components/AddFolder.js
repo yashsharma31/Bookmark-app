@@ -1,4 +1,3 @@
-import PropTypes from "prop-types";
 import { IconButton } from "@mui/material";
 import React from "react";
 import "../style/createfolder.css";
@@ -12,7 +11,6 @@ import {
 } from "./Individual_comp/C_BookmarkFolder";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import { useDispatch } from "react-redux/es/exports";
-import { Form } from "formik";
 
 export default function AddFolder() {
   const [open, setOpen] = React.useState(false);
